@@ -1,0 +1,213 @@
+﻿@model UniversitySystem.ViewModels.CourseViewModel
+@{
+    ViewBag.Title = "Save Course";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Save Course</h2>
+
+<form id="courseForm" class="form-needs-validation" novalidate="" method="post">
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="courseCodeInput">Course Code:</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="courseCodeInput" placeholder="Enter Course Code" name="CourseCode" required />
+                <div id="courseCodeStatus"></div>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please enter course code.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="courseNameInput">Course Name</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="courseNameInput" placeholder="Enter Course Name" name="CourseName" required />
+                <div id="courseNameStatus"></div>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please enter course name.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="courseCreditInput">Course Credit</label>
+            <div class="input-group">
+                <input type="number" class="form-control" id="courseCreditInput" step="0.5" min="1" max="5" placeholder="Ex: 2.5" name="CourseCredit" required/>
+                <div id="courseCreditStatus"></div>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please enter course credit.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="courseDescriptionInput">Course Description</label>
+        <textarea class="form-control" id="courseDescriptionInput" name="CourseDescription" rows="3"></textarea>
+    </div>
+    @*<div class="form-group">
+            @Html.LabelFor(x => x.SelectedDepartmentId, "Department", htmlAttributes: new { @class = "custom-control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.DropDownListFor(x => x.SelectedDepartmentId,
+                            new SelectList(Model.Departments, "Value", "Text"),
+                            htmlAttributes: new { @class = "form-control", id = "Department", @required = true })
+                @Html.ValidationMessageFor(x => x.SelectedDepartmentId, "Please select a department", new { @class = "text-danger" })
+            </div>
+        </div>*@
+    <div class="form-group">
+        <label for="selectedDepartmentId">Department</label>
+        <select class="form-control" id="selectedDepartmentId" name="SelectedDepartmentId" required></select>
+        <div id="courseDepartmentStatus"></div>
+        <div class="invalid-feedback">
+            Please select a department.
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="selectedSemesterId" class="col-sm-2 control-label">Semester</label>
+        <select class="form-control" id="selectedSemesterId" name="SelectedSemesterId" required></select>
+        <div id="courseSemesterStatus"></div>
+        <div class="invalid-feedback">
+            Please select a semester.
+        </div>
+    </div>
+    @*<div class="form-group">
+            @Html.LabelFor(m => m.SelectedSemesterId, "Semester", new { @class = "custom-control-label col-md-2" })
+            @Html.DropDownListFor(m => m.SelectedSemesterId, new SelectList(Model.Semesters, "Value", "Text"), "Select Semester", new { @class = "form-control", id = "SemesterList", @required = true })
+        </div>*@
+    <button class="btn btn-primary" id="saveCourseButton" type="submit">Save</button>
+</form>
+
+@section scripts
+{
+    <script src="~/Scripts/course-form-validator.js"></script>
+    <script>
+        $(document).ready(function() {
+            populateDepartmentDropdown();
+            populateSemesterDropdown();
+            verifyCourseCode();
+            verifyCourseName();
+            
+        });
+
+        function populateDepartmentDropdown() {
+            var departmentDropdown = $("#selectedDepartmentId");
+            departmentDropdown.empty();
+            var dept = @Html.Raw(Json.Encode(Model.Departments));
+
+            $.each(dept,
+                function() {
+                    departmentDropdown.append($('<option/>',
+                        {
+                            value: this.Value,
+                            html: this.Text
+                        }));
+                });
+        }
+
+        function populateSemesterDropdown() {
+            $("#selectedDepartmentId").change(function() {
+                var semesterDropdown = $("#selectedSemesterId");
+                semesterDropdown.empty();
+                var semesters = @Html.Raw(Json.Encode(Model.Semesters));
+                if ($(this).val() > 0) {
+                    $.each(semesters,
+                        function() {
+                            semesterDropdown.append($('<option/>',
+                                {
+                                    //value: dept.Value,
+                                    html: this.Text
+                                }));
+                        });
+                }
+                else {
+                    semesterDropdown.append($('<option/>',
+                        {
+                            //value: dept.Value,
+                            html: "--Select Semester--"
+                        }));
+                }
+            });
+        }
+
+        function verifyCourseCode() {
+            $("#courseCodeInput").change(function () {
+                if ($("#courseCodeInput").val().trim().length >= 3 && $("#courseCodeInput").val().trim().length <= 7 ) {
+                    var courseCodeData = $(this).val();
+                    $('#saveCourseButton').attr('disabled', 'disabled');
+                    $.ajax({
+                        url: '@Url.Action("CheckCourseCodeAvailability", "Course")',
+                        type: 'POST',
+                        data: JSON.stringify({ courseCode: courseCodeData }),
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        success: function(doesCodeExists) {
+                            if (doesCodeExists === false) {
+                                $("#courseCodeStatus").html('<font color="Green">Available! You can take it.</font>');
+                                $("#saveCourseButton").removeAttr('disabled', 'disabled');
+                            } else {
+                                $("#courseCodeStatus").html('<font color="Red">Not available</font>');
+                                $("#courseCodeInput").focus();
+                                $("#saveCourseButton").attr('disabled', 'disabled');
+                            }
+                        }
+                    });
+                } else {
+                    $("#courseCodeStatus").html('<font color="Red">Must be 3 to 7 characters</font>');
+                    $("#saveCourseButton").removeAttr('disabled', 'disabled');
+                }
+            });
+        }
+
+        function verifyCourseName() {
+            $("#courseNameInput").change(function () {
+                if ($("#courseNameInput").val().trim().length >= 7 && $("#courseNameInput").val().trim().length <= 30 ) {
+                    var courseNameData = $(this).val();
+                    //$('#saveCourseButton').attr('disabled', 'disabled');
+                    $.ajax({
+                        url: '@Url.Action("CheckCourseNameAvailability", "Course")',
+                        type: 'POST',
+                        data: JSON.stringify({ courseName: courseNameData }),
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        success: function(doesNameExists) {
+                            if (doesNameExists === false) {
+                                $("#courseNameStatus").html('<font color="Green">Available! You can take it.</font>');
+                                $("#saveCourseButton").removeAttr('disabled', 'disabled');
+                            } else {
+                                $("#courseNameStatus").html('<font color="Red">Not available</font>');
+                                $("#courseNameInput").focus();
+                                $("#saveCourseButton").attr('disabled', 'disabled');
+                            }
+                        }
+                    });
+                } else {
+                    $("#courseNameStatus").html('<font color="Red">Must be 3 to 7 characters</font>');
+                    $("#saveCourseButton").removeAttr('disabled', 'disabled');
+                }
+            });
+        }
+
+        function checkIfNumber() {
+            /*if ($("#courseCreditInput").val() === "") {
+                $("#courseCreditStatus").text("please enter course credit");
+            }*/
+
+            if(isNaN($("#courseCreditInput").val())) {
+                $("#courseCreditStatus").html("Not a number");
+            }
+
+        }
+
+    </script>
+}

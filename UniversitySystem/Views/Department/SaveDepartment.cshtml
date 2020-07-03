@@ -1,0 +1,109 @@
+﻿@model UniversitySystem.Models.Department
+@{
+    ViewBag.Title = "Save Department";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Save Department</h2>
+
+<form class="form-needs-validation" novalidate="" method="post">
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="deptCodeInput">Department Code:</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="deptCodeInput" placeholder="Enter Department Code" name="DepartmentCode" required />
+                <div id="deptCodeStatus"></div>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please enter department code.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="deptNameInput">Department Name:</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="deptNameInput" placeholder="Enter Department Name" name="DepartmentName" required />
+                <p id="deptNameStatus"></p>
+                <div class="invalid-feedback">
+                    Please enter department name.
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-primary" id="saveDeptButton" type="submit">Save</button>
+</form>
+
+@section scripts
+{
+    <script src="~/Scripts/jquery-3.0.0.js"></script>
+    <script src="~/Scripts/department-form-validator.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            validateDeptCode();
+            validateDeptName();
+    });
+
+    function validateDeptCode() {
+        $("#deptCodeInput").change(function () {
+            if ($("#deptCodeInput").val().trim().length >= 3 && $("#deptCodeInput").val().trim().length <= 7 ) {
+                var deptCodeData = $(this).val();
+                $('#saveDeptButton').attr('disabled', 'disabled');
+                $.ajax({
+                    url: '@Url.Action("CheckDepartmentCodeAvailability", "Department")',
+                    type: 'POST',
+                    data: JSON.stringify({ deptCode: deptCodeData }),
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    success: function(doesCodeExists) {
+                        if (doesCodeExists === false) {
+                            $("#deptCodeStatus").html('<font color="Green">Available! You can take it.</font>');
+                            $("#saveDeptButton").removeAttr('disabled', 'disabled');
+                        } else {
+                            $("#deptCodeStatus").html('<font color="Red">Not available</font>');
+                            $("#deptCodeInput").focus();
+                            $("#saveDeptButton").attr('disabled', 'disabled');
+                        }
+                    }
+                });
+            } else {
+                $("#deptCodeStatus").html('<font color="Red">Must be 3 to 7 characters</font>');
+                $("#saveDeptButton").removeAttr('disabled', 'disabled');
+            }
+        });
+    }
+
+    function validateDeptName() {
+        $("#deptNameInput").change(function() {
+            if ($("#deptNameInput").val().trim().length >= 3 && $("#deptNameInput").val().trim().length <=30) {
+                var deptNameData = $(this).val().trim();
+                $('#saveDeptButton').attr('disabled', 'disabled');
+                $.ajax({
+                    url: '@Url.Action("CheckDepartmentNameAvailability", "Department")',
+                    type: 'POST',
+                    data: JSON.stringify({ deptName: deptNameData }),
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    success: function(doesNameExists) {
+                        if (doesNameExists === false) {
+                            $("#deptNameStatus").html('<font color="Green">Available !. you can take it.</font>');
+                            $("#saveDeptButton").removeAttr('disabled', 'disabled');
+                        } else {
+                            $("#deptNameStatus").html('<font color="Red">Not available</font>');
+                            $("#deptNameInput").focus();
+                            $("#saveDeptButton").attr('disabled', 'disabled');
+                        }
+                    }
+                });
+            } else {
+                $("#deptNameStatus").html('<font color="Red">Must be 3 to 30 characters</font>')
+            }
+        });
+    }
+
+    </script>
+}
