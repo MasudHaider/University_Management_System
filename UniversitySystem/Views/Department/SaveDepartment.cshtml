@@ -46,18 +46,16 @@
         $(document).ready(function () {
             validateDeptCode();
             validateDeptName();
-            isAlphabetsOnly();
-        });
-
-        function isAlphabetsOnly() {
-            $(".input-group").on("keydown", function(event){
+            $(".input-group").on("keydown keyup keypress select contextmenu drop paste", function(event){
                     var inputValue = event.which;
                     // allow letters and whitespaces only.
                     if(!(inputValue >= 65 && inputValue <= 120) && (inputValue !== 8)) { 
                         event.preventDefault();
                     }
                 });
-            }
+        });
+
+
 
     function validateDeptCode() {
         $("#deptCodeInput").change(function () {
