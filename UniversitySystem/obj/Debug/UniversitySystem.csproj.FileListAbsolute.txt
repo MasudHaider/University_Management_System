@@ -94,7 +94,6 @@ E:\Projects\UniversitySystem\UniversitySystem\bin\Microsoft.AI.Web.xml
 E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.csprojResolveAssemblyReference.cache
 E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.dll
 E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.pdb
-E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.InitialModel.resources
 E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.csproj.GenerateResource.Cache
 E:\Projects\UniversitySystem\UniversitySystem\bin\System.Net.Http.Formatting.dll
 E:\Projects\UniversitySystem\UniversitySystem\bin\System.Web.Http.dll
@@ -102,7 +101,6 @@ E:\Projects\UniversitySystem\UniversitySystem\bin\System.Web.Http.WebHost.dll
 E:\Projects\UniversitySystem\UniversitySystem\bin\System.Net.Http.Formatting.xml
 E:\Projects\UniversitySystem\UniversitySystem\bin\System.Web.Http.xml
 E:\Projects\UniversitySystem\UniversitySystem\bin\System.Web.Http.WebHost.xml
-E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.ReInitialize.resources
 E:\Projects\Test\UniversitySystem\UniversitySystem\bin\ApplicationInsights.config
 E:\Projects\Test\UniversitySystem\UniversitySystem\bin\roslyn\csc.exe
 E:\Projects\Test\UniversitySystem\UniversitySystem\bin\roslyn\csc.exe.config
@@ -212,3 +210,9 @@ E:\Projects\Test\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Mi
 E:\Projects\Test\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.AddDepartmentAndSemesterToCourse.resources
 E:\Projects\Test\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.DepartmentCourseOneToManyRelationship.resources
 E:\Projects\Test\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.AddSemesterEnumToCourse.resources
+E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.AddDepartment.resources
+E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.MoveEntityConfigurationToSeparateClass.resources
+E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.AddCourseTable.resources
+E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.AddDepartmentAndSemesterToCourse.resources
+E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.DepartmentCourseOneToManyRelationship.resources
+E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.AddSemesterEnumToCourse.resources

@@ -83,7 +83,6 @@ namespace UniversitySystem.Controllers
 
             return Json(department.GetDepartments(), JsonRequestBehavior.AllowGet);
         }
-<<<<<<< HEAD
 
         public ActionResult GetSemesterDropdownItems()
         {
@@ -91,7 +90,5 @@ namespace UniversitySystem.Controllers
 
             return Json(course.GetSemesterListItems(), JsonRequestBehavior.AllowGet);
         }
-=======
->>>>>>> 74741be5a3beb90e294eb07726cc0046aac1b6be
     }
 }
