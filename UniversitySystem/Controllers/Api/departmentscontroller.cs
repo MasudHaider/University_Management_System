@@ -17,7 +17,7 @@ namespace UniversitySystem.Controllers.Api
         }
 
         //GET /api/departments
-        [System.Web.Http.HttpGet]
+        [HttpGet]
         public IHttpActionResult GetDepartments()
         {
             var departments = _context.Departments.ToList();
@@ -28,7 +28,7 @@ namespace UniversitySystem.Controllers.Api
             return NotFound();
         }
 
-        [System.Web.Http.HttpPost]
+        [HttpPost]
         //POST /api/departments
         public HttpResponseMessage CreateDepartment(Department department)
         {
