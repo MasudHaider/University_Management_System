@@ -41,7 +41,7 @@
         <div class="col-md-4 mb-3">
             <label for="courseCreditInput">Course Credit</label>
             <div class="input-group">
-                <input type="number" class="form-control" id="courseCreditInput" step="0.5" min="1" max="5" placeholder="Ex: 2.5" name="CourseCredit" required/>
+                <input type="text" class="form-control" id="courseCreditInput" placeholder="Ex: 2.5" name="CourseCredit" required />
                 <div id="courseCreditStatus"></div>
                 <div class="valid-feedback">
                     Looks good!
@@ -54,7 +54,9 @@
     </div>
     <div class="form-group">
         <label for="courseDescriptionInput">Course Description</label>
-        <textarea class="form-control" id="courseDescriptionInput" name="CourseDescription" rows="3"></textarea>
+        <div class="input-group">
+            <textarea class="form-control" id="courseDescriptionInput" name="CourseDescription" rows="3"></textarea>
+        </div>
     </div>
     @*<div class="form-group">
             @Html.LabelFor(x => x.SelectedDepartmentId, "Department", htmlAttributes: new { @class = "custom-control-label col-md-2" })
@@ -90,6 +92,7 @@
 
 @section scripts
 {
+    <script src="~/Scripts/jquery-3.0.0.js"></script>
     <script src="~/Scripts/course-form-validator.js"></script>
     <script>
         $(document).ready(function() {
@@ -97,7 +100,13 @@
             populateSemesterDropdown();
             verifyCourseCode();
             verifyCourseName();
-            
+            $(".input-group:not(#courseCreditInput)").on("keydown keyup keypress select contextmenu drop paste", function(event){
+                var inputValue = event.which;
+                // allow letters and whitespaces only.
+                if(!(inputValue >= 65 && inputValue <= 120) && (inputValue !== 8)) { 
+                    event.preventDefault();
+                }
+            });
         });
 
         function populateDepartmentDropdown() {
@@ -129,8 +138,7 @@
                                     html: this.Text
                                 }));
                         });
-                }
-                else {
+                } else {
                     semesterDropdown.append($('<option/>',
                         {
                             //value: dept.Value,
@@ -141,8 +149,8 @@
         }
 
         function verifyCourseCode() {
-            $("#courseCodeInput").change(function () {
-                if ($("#courseCodeInput").val().trim().length >= 3 && $("#courseCodeInput").val().trim().length <= 7 ) {
+            $("#courseCodeInput").change(function() {
+                if ($("#courseCodeInput").val().trim().length >= 3 && $("#courseCodeInput").val().trim().length <= 7) {
                     var courseCodeData = $(this).val();
                     $('#saveCourseButton').attr('disabled', 'disabled');
                     $.ajax({
@@ -170,8 +178,8 @@
         }
 
         function verifyCourseName() {
-            $("#courseNameInput").change(function () {
-                if ($("#courseNameInput").val().trim().length >= 7 && $("#courseNameInput").val().trim().length <= 30 ) {
+            $("#courseNameInput").change(function() {
+                if ($("#courseNameInput").val().trim().length >= 7 && $("#courseNameInput").val().trim().length <= 30) {
                     var courseNameData = $(this).val();
                     //$('#saveCourseButton').attr('disabled', 'disabled');
                     $.ajax({
@@ -196,17 +204,6 @@
                     $("#saveCourseButton").removeAttr('disabled', 'disabled');
                 }
             });
-        }
-
-        function checkIfNumber() {
-            /*if ($("#courseCreditInput").val() === "") {
-                $("#courseCreditStatus").text("please enter course credit");
-            }*/
-
-            if(isNaN($("#courseCreditInput").val())) {
-                $("#courseCreditStatus").html("Not a number");
-            }
-
         }
 
     </script>
