@@ -31,8 +31,7 @@
                                     dataType: "json",
                                     data: JSON.stringify(courseInputs),
                                     success: function (response) {
-                                        alert(response);
-
+                                        alert(response.length);
                                     }
                                     /*error: function () {
                                         alert('failed');
