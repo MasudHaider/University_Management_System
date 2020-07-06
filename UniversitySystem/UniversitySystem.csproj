@@ -234,14 +234,28 @@
     <Compile Include="Migrations\202006260515386_AddSemesterEnumToCourse.Designer.cs">
       <DependentUpon>202006260515386_AddSemesterEnumToCourse.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007060520198_AddTeacherAndDesignationTables.cs" />
+    <Compile Include="Migrations\202007060520198_AddTeacherAndDesignationTables.Designer.cs">
+      <DependentUpon>202007060520198_AddTeacherAndDesignationTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007060637567_ConfigurePropertyAndRelationshipOfTeacherTable.cs" />
+    <Compile Include="Migrations\202007060637567_ConfigurePropertyAndRelationshipOfTeacherTable.Designer.cs">
+      <DependentUpon>202007060637567_ConfigurePropertyAndRelationshipOfTeacherTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007060641155_ChangeTeacherCreditToFloat.cs" />
+    <Compile Include="Migrations\202007060641155_ChangeTeacherCreditToFloat.Designer.cs">
+      <DependentUpon>202007060641155_ChangeTeacherCreditToFloat.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Configurations\CourseEntityConfiguration.cs" />
     <Compile Include="Models\Configurations\DepartmentEntityConfiguration.cs" />
+    <Compile Include="Models\Configurations\TeacherEntityConfiguration.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Teacher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\CourseViewModel.cs" />
@@ -385,6 +399,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006260515386_AddSemesterEnumToCourse.resx">
       <DependentUpon>202006260515386_AddSemesterEnumToCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007060520198_AddTeacherAndDesignationTables.resx">
+      <DependentUpon>202007060520198_AddTeacherAndDesignationTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007060637567_ConfigurePropertyAndRelationshipOfTeacherTable.resx">
+      <DependentUpon>202007060637567_ConfigurePropertyAndRelationshipOfTeacherTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007060641155_ChangeTeacherCreditToFloat.resx">
+      <DependentUpon>202007060641155_ChangeTeacherCreditToFloat.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

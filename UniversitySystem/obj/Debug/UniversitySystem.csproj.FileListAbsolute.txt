@@ -216,3 +216,6 @@ E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrati
 E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.AddDepartmentAndSemesterToCourse.resources
 E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.DepartmentCourseOneToManyRelationship.resources
 E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.AddSemesterEnumToCourse.resources
+E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.AddTeacherAndDesignationTables.resources
+E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.ConfigurePropertyAndRelationshipOfTeacherTable.resources
+E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.ChangeTeacherCreditToFloat.resources

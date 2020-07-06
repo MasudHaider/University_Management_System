@@ -26,6 +26,9 @@ namespace UniversitySystem.Models
 
         public virtual ICollection<Course> Courses { get; set; }
 
+        public virtual ICollection<Teacher> Teachers { get; set; }
+
+
         //Get all the departments
         public IEnumerable<SelectListItem> GetDepartments()
         {
