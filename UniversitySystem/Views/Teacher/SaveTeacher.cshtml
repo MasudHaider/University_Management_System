@@ -85,3 +85,28 @@
     </div>
 </form>
 
+@section scripts
+{
+    <script src="~/Scripts/jquery-3.0.0.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            populateDesignationDropdown();
+        });
+
+        function populateDesignationDropdown() {
+            var designationDropdown = $("#selectedDesignationId");
+            designationDropdown.empty();
+            var designations = @Html.Raw(Json.Encode(Model.Designations));
+
+            $.each(designations,
+                function() {
+                    designationDropdown.append($('<option/>',
+                        {
+                            value: this.Value,
+                            html: this.Text
+                        }));
+                });
+        }
+    </script>
+}
