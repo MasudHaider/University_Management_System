@@ -246,13 +246,27 @@
     <Compile Include="Migrations\202007060641155_ChangeTeacherCreditToFloat.Designer.cs">
       <DependentUpon>202007060641155_ChangeTeacherCreditToFloat.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007061402153_AddClassDesignationToMakeLookupTable.cs" />
+    <Compile Include="Migrations\202007061402153_AddClassDesignationToMakeLookupTable.Designer.cs">
+      <DependentUpon>202007061402153_AddClassDesignationToMakeLookupTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007061417123_RemoveDesignation.cs" />
+    <Compile Include="Migrations\202007061417123_RemoveDesignation.Designer.cs">
+      <DependentUpon>202007061417123_RemoveDesignation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007061421081_AddDesignationClassWithEnumAndSeed.cs" />
+    <Compile Include="Migrations\202007061421081_AddDesignationClassWithEnumAndSeed.Designer.cs">
+      <DependentUpon>202007061421081_AddDesignationClassWithEnumAndSeed.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Configurations\CourseEntityConfiguration.cs" />
     <Compile Include="Models\Configurations\DepartmentEntityConfiguration.cs" />
+    <Compile Include="Models\Configurations\DesignationEntityConfiguration.cs" />
     <Compile Include="Models\Configurations\TeacherEntityConfiguration.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\Designation.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Teacher.cs" />
@@ -408,6 +422,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007060641155_ChangeTeacherCreditToFloat.resx">
       <DependentUpon>202007060641155_ChangeTeacherCreditToFloat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007061402153_AddClassDesignationToMakeLookupTable.resx">
+      <DependentUpon>202007061402153_AddClassDesignationToMakeLookupTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007061417123_RemoveDesignation.resx">
+      <DependentUpon>202007061417123_RemoveDesignation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007061421081_AddDesignationClassWithEnumAndSeed.resx">
+      <DependentUpon>202007061421081_AddDesignationClassWithEnumAndSeed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

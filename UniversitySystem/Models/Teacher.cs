@@ -17,6 +17,7 @@ namespace UniversitySystem.Models
 
         public string TeacherContactNumber { get; set; }
 
+        public virtual Designation Designation { get; set; }
         public DesignationList DesignationId { get; set; }
 
         public virtual Department Department { get; set; }
@@ -25,14 +26,5 @@ namespace UniversitySystem.Models
         public float TeacherCredits { get; set; }
     }
 
-    public enum DesignationList
-    {
-        ChairProfessor = 1,
-        Professor,
-        AssociateProfessor,
-        AssistantProfessor,
-        VisitingProfessor,
-        AdjunctProfessor,
-        Lecturer
-    }
+    
 }

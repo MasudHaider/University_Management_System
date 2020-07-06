@@ -24,6 +24,7 @@ namespace UniversitySystem.Models
         public DbSet<Department> Departments { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Designation> Designations { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
@@ -40,6 +41,7 @@ namespace UniversitySystem.Models
             modelBuilder.Configurations.Add(new DepartmentEntityConfiguration());
             modelBuilder.Configurations.Add(new CourseEntityConfiguration());
             modelBuilder.Configurations.Add(new TeacherEntityConfiguration());
+            modelBuilder.Configurations.Add(new DesignationEntityConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }
