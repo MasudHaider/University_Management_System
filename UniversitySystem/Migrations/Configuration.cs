@@ -29,7 +29,7 @@ namespace UniversitySystem.Migrations
             //    );
             //
 
-            context.Designations.AddOrUpdate(d => d.Id,
+            /*context.Designations.AddOrUpdate(d => d.Id,
                 Enum.GetValues(typeof(DesignationList))
                     .OfType<DesignationList>()
                     .Select(d => new Designation()
@@ -37,7 +37,7 @@ namespace UniversitySystem.Migrations
                         Id = d,
                         DesignationName = d.ToString()
                     })
-                    .ToArray());
+                    .ToArray());*/
         }
     }
 }

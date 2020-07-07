@@ -34,5 +34,29 @@ namespace UniversitySystem.Controllers
 
             return View(teacherViewModel);
         }
+
+        [HttpPost]
+        public bool SaveTeacher(TeacherViewModel teacherViewModel)
+        {
+            if (teacherViewModel == null)
+                return false;
+
+            var teacher = new Teacher
+            {
+                TeacherName = teacherViewModel.TeacherName,
+                TeacherAddress = teacherViewModel.TeacherAddress,
+                TeacherEmail = teacherViewModel.TeacherEmail,
+                TeacherContactNumber = teacherViewModel.TeacherContactNumber,
+                TeacherCredits = teacherViewModel.TeacherCredits,
+                DepartmentId = teacherViewModel.SelectedDepartmentId,
+                DesignationId = (DesignationList) teacherViewModel.SelectedDesignationId,
+                Department = _context.Departments.Find(teacherViewModel.SelectedDepartmentId)
+            };
+
+            _context.Teachers.Add(teacher);
+            _context.SaveChanges();
+
+            return true;
+        }
     }
 }

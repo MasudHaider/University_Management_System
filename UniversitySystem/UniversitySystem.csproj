@@ -259,11 +259,18 @@
     <Compile Include="Migrations\202007061421081_AddDesignationClassWithEnumAndSeed.Designer.cs">
       <DependentUpon>202007061421081_AddDesignationClassWithEnumAndSeed.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007070546241_RemoveDesignationFromTeacherAsALookupTable.cs" />
+    <Compile Include="Migrations\202007070546241_RemoveDesignationFromTeacherAsALookupTable.Designer.cs">
+      <DependentUpon>202007070546241_RemoveDesignationFromTeacherAsALookupTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007070551418_RemoveDesignationTable.cs" />
+    <Compile Include="Migrations\202007070551418_RemoveDesignationTable.Designer.cs">
+      <DependentUpon>202007070551418_RemoveDesignationTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Configurations\CourseEntityConfiguration.cs" />
     <Compile Include="Models\Configurations\DepartmentEntityConfiguration.cs" />
-    <Compile Include="Models\Configurations\DesignationEntityConfiguration.cs" />
     <Compile Include="Models\Configurations\TeacherEntityConfiguration.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Department.cs" />
@@ -332,6 +339,7 @@
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\teacher-form-validator.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
@@ -434,6 +442,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007061421081_AddDesignationClassWithEnumAndSeed.resx">
       <DependentUpon>202007061421081_AddDesignationClassWithEnumAndSeed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007070546241_RemoveDesignationFromTeacherAsALookupTable.resx">
+      <DependentUpon>202007070546241_RemoveDesignationFromTeacherAsALookupTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007070551418_RemoveDesignationTable.resx">
+      <DependentUpon>202007070551418_RemoveDesignationTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -11,7 +11,7 @@
         <div class="col-md-4 mb-3">
             <label for="teacherNameInput">Name:</label>
             <div class="input-group">
-                <input type="text" class="form-control" id="teacherNameInput" name="TeacherName" placeholder="Ex: John Doe" required/>
+                <input type="text" class="form-control" id="teacherNameInput" name="TeacherName" placeholder="Ex: John Doe" required />
                 <div id="teacherNameStatus"></div>
                 <div class="invalid-feedback">
                     Please enter teacher's name
@@ -83,12 +83,15 @@
             </div>
         </div>
     </div>
+
+    <button class="btn btn-primary" id="saveteacherButton" type="submit">Save</button>
 </form>
 
 @section scripts
 {
     <script src="~/Scripts/jquery-3.0.0.js"></script>
-    
+    <script src="~/Scripts/teacher-form-validator.js"></script>
+
     <script>
         $(document).ready(function () {
             populateDesignationDropdown();

@@ -222,3 +222,5 @@ E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrati
 E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.AddClassDesignationToMakeLookupTable.resources
 E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.RemoveDesignation.resources
 E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.AddDesignationClassWithEnumAndSeed.resources
+E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.RemoveDesignationFromTeacherAsALookupTable.resources
+E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.RemoveDesignationTable.resources
