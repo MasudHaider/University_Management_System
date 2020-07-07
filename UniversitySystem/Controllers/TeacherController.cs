@@ -25,11 +25,10 @@ namespace UniversitySystem.Controllers
         public ActionResult SaveTeacher()
         {
             var department = new Department();
-            var designation = new Designation();
-
+            
             var teacherViewModel = new TeacherViewModel
             {
-                Designations = designation.GetDesignationListItems(),
+                Designations = Enum<DesignationList>.GetDesignationListItems(),
                 Departments = department.GetDepartments()
             };
 

@@ -90,8 +90,9 @@
     <script src="~/Scripts/jquery-3.0.0.js"></script>
     
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             populateDesignationDropdown();
+            populateDepartmentDropdown();
         });
 
         function populateDesignationDropdown() {
@@ -107,6 +108,30 @@
                             html: this.Text
                         }));
                 });
+        }
+
+        function populateDepartmentDropdown() {
+            $("#selectedDesignationId").change(function() {
+                var departmentDropdown = $("#selectedDepartmentId");
+                departmentDropdown.empty();
+                var departments = @Html.Raw(Json.Encode(Model.Departments));
+                if ($(this).val() > 0) {
+                    $.each(departments,
+                        function() {
+                            departmentDropdown.append($('<option/>',
+                                {
+                                    value: this.Value,
+                                    html: this.Text
+                                }));
+                        });
+                } else {
+                    departmentDropdown.append($('<option/>',
+                        {
+                            //value: dept.Value,
+                            html: "--Select Department--"
+                        }));
+                }
+            });
         }
     </script>
 }
