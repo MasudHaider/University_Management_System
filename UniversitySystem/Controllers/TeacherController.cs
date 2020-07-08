@@ -28,7 +28,7 @@ namespace UniversitySystem.Controllers
             
             var teacherViewModel = new TeacherViewModel
             {
-                Designations = Enum<DesignationList>.GetDesignationListItems(),
+                Designations = Enum<Designations>.GetListItems(),
                 Departments = department.GetDepartments()
             };
 
@@ -49,7 +49,7 @@ namespace UniversitySystem.Controllers
                 TeacherContactNumber = teacherViewModel.TeacherContactNumber,
                 TeacherCredits = teacherViewModel.TeacherCredits,
                 DepartmentId = teacherViewModel.SelectedDepartmentId,
-                DesignationId = (DesignationList) teacherViewModel.SelectedDesignationId,
+                DesignationId = (Designations) teacherViewModel.SelectedDesignationId,
                 Department = _context.Departments.Find(teacherViewModel.SelectedDepartmentId)
             };
 

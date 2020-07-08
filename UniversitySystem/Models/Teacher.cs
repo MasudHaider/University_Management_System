@@ -18,7 +18,7 @@ namespace UniversitySystem.Models
         public string TeacherContactNumber { get; set; }
 
         //public virtual Designation Designation { get; set; }
-        public DesignationList DesignationId { get; set; }
+        public Designations DesignationId { get; set; }
 
         public virtual Department Department { get; set; }
         public int DepartmentId { get; set; }

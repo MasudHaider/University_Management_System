@@ -30,7 +30,7 @@ namespace UniversitySystem.Controllers
             var courseViewModel = new CourseViewModel
             {
                 Departments = department.GetDepartments(),
-                Semesters = course.GetSemesterListItems()
+                Semesters = Enum<Semester>.GetListItems()
             };
 
             return View(courseViewModel);

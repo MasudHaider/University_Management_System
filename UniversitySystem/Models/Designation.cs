@@ -10,18 +10,11 @@ namespace UniversitySystem.Models
 {
     public class Designation
     {
-        private readonly ApplicationDbContext _context;
-
-        public Designation()
-        {
-            _context = new ApplicationDbContext();
-        }
-
-        public DesignationList Id { get; set; }
-        public string DesignationName { get; set; }
+        /*public Designations Id { get; set; }
+        public string DesignationName { get; set; }*/
 
         //methods
-        /*public IEnumerable<SelectListItem> GetDesignationListItems()
+        /*public IEnumerable<SelectListItem> GetListItems()
         {
             List<SelectListItem> designationList = _context.Designations.AsNoTracking()
                 .OrderBy(d => d.DesignationName)
@@ -39,7 +32,7 @@ namespace UniversitySystem.Models
     }*/
     }
 
-    public enum DesignationList
+    public enum Designations
     {
         [Description("Chair Professor")]
         ChairProfessor = 1,
@@ -65,7 +58,7 @@ namespace UniversitySystem.Models
 
     public class Enum<T> where T : struct, IConvertible
     {
-        public static List<SelectListItem> GetDesignationListItems()
+        public static List<SelectListItem> GetListItems()
         {
             List<SelectListItem> items = new List<SelectListItem>();
 

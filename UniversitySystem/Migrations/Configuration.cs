@@ -30,8 +30,8 @@ namespace UniversitySystem.Migrations
             //
 
             /*context.Designations.AddOrUpdate(d => d.Id,
-                Enum.GetValues(typeof(DesignationList))
-                    .OfType<DesignationList>()
+                Enum.GetValues(typeof(Designations))
+                    .OfType<Designations>()
                     .Select(d => new Designation()
                     {
                         Id = d,

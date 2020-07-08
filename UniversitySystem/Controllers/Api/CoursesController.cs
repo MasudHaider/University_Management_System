@@ -44,7 +44,7 @@ namespace UniversitySystem.Controllers.Api
                 CourseCredit = courseViewModel.CourseCredit,
                 CourseDescription = courseViewModel.CourseDescription,
                 DepartmentId = courseViewModel.SelectedDepartmentId,
-                SemesterId = courseViewModel.SelectedSemesterId,
+                SemesterId = (Semester)courseViewModel.SelectedSemesterId,
                 Department = _context.Departments.Find(courseViewModel.SelectedDepartmentId)
             };
 

@@ -85,7 +85,7 @@
     </div>
     @*<div class="form-group">
             @Html.LabelFor(m => m.SelectedSemesterId, "Semester", new { @class = "custom-control-label col-md-2" })
-            @Html.DropDownListFor(m => m.SelectedSemesterId, new SelectList(Model.Semesters, "Value", "Text"), "Select Semester", new { @class = "form-control", id = "SemesterList", @required = true })
+            @Html.DropDownListFor(m => m.SelectedSemesterId, new SelectList(Model.Semesters, "Value", "Text"), "Select Semester", new { @class = "form-control", id = "Semester", @required = true })
         </div>*@
     <button class="btn btn-primary" id="saveCourseButton" type="submit">Save</button>
 </form>
@@ -136,14 +136,13 @@
                         function() {
                             semesterDropdown.append($('<option/>',
                                 {
-                                    //value: dept.Value,
+                                    value: this.Value,
                                     html: this.Text
                                 }));
                         });
                 } else {
                     semesterDropdown.append($('<option/>',
                         {
-                            //value: dept.Value,
                             html: "--Select Semester--"
                         }));
                 }
