@@ -274,7 +274,6 @@
     <Compile Include="Models\Configurations\TeacherEntityConfiguration.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Department.cs" />
-    <Compile Include="Models\Designation.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Teacher.cs" />
