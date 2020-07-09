@@ -114,25 +114,25 @@
         }
 
         function populateDepartmentDropdown() {
-            $("#selectedDesignationId").change(function() {
-                var departmentDropdown = $("#selectedDepartmentId");
-                departmentDropdown.empty();
-                var departments = @Html.Raw(Json.Encode(Model.Departments));
+            var departments = @Html.Raw(Json.Encode(Model.Departments));
+            $("#selectedDepartmentId").append($('<option/>',
+                {
+                    html: departments[0].Text
+                }));
+
+            $("#selectedDesignationId").change(function () {
+                $("#selectedDepartmentId").find('option:gt(0)').remove();
+
                 if ($(this).val() > 0) {
+                    $("#selectedDepartmentId").empty();
                     $.each(departments,
                         function() {
-                            departmentDropdown.append($('<option/>',
+                            $("#selectedDepartmentId").append($('<option/>',
                                 {
-                                    value: this.Value,
+                                    /*value: this.Value,*/
                                     html: this.Text
                                 }));
                         });
-                } else {
-                    departmentDropdown.append($('<option/>',
-                        {
-                            //value: dept.Value,
-                            html: "--Select Department--"
-                        }));
                 }
             });
         }

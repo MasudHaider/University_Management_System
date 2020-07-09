@@ -30,8 +30,11 @@ namespace UniversitySystem.Models
 
     public enum Designations
     {
+        [Description("--Select a Designation--")]
+        Default = 0,
+
         [Description("Chair Professor")]
-        ChairProfessor = 1,
+        ChairProfessor,
 
         [Description("Professor")]
         Professor,
@@ -77,15 +80,11 @@ namespace UniversitySystem.Models
                     };
                     if (descriptionAttributes.Length > 0)
                     {
-
                         item.Text = ((DescriptionAttribute)descriptionAttributes[0]).Description;
                     }
 
                     items.Add(item);
-
-
                 }
-
             }
 
             return items;
