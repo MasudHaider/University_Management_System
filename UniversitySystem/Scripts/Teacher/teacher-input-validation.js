@@ -12,8 +12,6 @@
     }
 
     const validateFields = (field, regex) => {
-        var errorTag = field.nextElementSibling;
-        errorTag.removeAttribute();
         regex.test(field.value) ? field.className = 'valid' : field.className = 'invalid';
     }
 

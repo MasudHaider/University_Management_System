@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace UniversitySystem.Models
 {
     public class Teacher
     {
+        private readonly ApplicationDbContext _context;
+
+        public Teacher()
+        {
+            _context = new ApplicationDbContext();
+        }
+
         public int Id { get; set; }
 
         public string TeacherName { get; set; }
@@ -26,6 +34,18 @@ namespace UniversitySystem.Models
         public int DepartmentId { get; set; }
 
         public float TeacherCredits { get; set; }
+
+
+        //Methods
+        public bool CheckTeacherEmailAvailability(string teacherEmail)
+        {
+            return _context.Teachers.Any(t => t.TeacherEmail == teacherEmail);
+        }
+
+        public bool CheckTeacherContactAvailability(string teacherContact)
+        {
+            return _context.Teachers.Any(t => t.TeacherContactNumber == teacherContact);
+        }
     }
 
     public enum Designations

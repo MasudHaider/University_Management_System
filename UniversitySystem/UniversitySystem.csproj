@@ -203,6 +203,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\CoursesController.cs" />
     <Compile Include="Controllers\Api\DepartmentsController.cs" />
+    <Compile Include="Controllers\Api\TeachersController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -338,7 +339,9 @@
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\teacher-form-validator.js" />
+    <Content Include="Scripts\Teacher\style-errors.css" />
+    <Content Include="Scripts\Teacher\teacher-form-validator.js" />
+    <Content Include="Scripts\Teacher\teacher-input-validation.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />

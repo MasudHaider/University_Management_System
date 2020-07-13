@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using UniversitySystem.Models;
 using UniversitySystem.ViewModels;
 
@@ -57,6 +53,24 @@ namespace UniversitySystem.Controllers
             _context.SaveChanges();
 
             return true;
+        }
+
+        public JsonResult CheckTeacherEmailAvailability(string teacherEmail)
+        {
+            var teacher = new Teacher();
+
+            var teacherEmailAvailability = teacher.CheckTeacherEmailAvailability(teacherEmail);
+
+            return Json(teacherEmailAvailability, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult CheckTeacherContactAvailability(string teacherContact)
+        {
+            var teacher = new Teacher();
+
+            var teacherContactAvailability = teacher.CheckTeacherContactAvailability(teacherContact);
+
+            return Json(teacherContactAvailability, JsonRequestBehavior.AllowGet);
         }
     }
 }
