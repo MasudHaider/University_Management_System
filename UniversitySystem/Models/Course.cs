@@ -34,7 +34,7 @@ namespace UniversitySystem.Models
         public Semester SemesterId { get; set; }
 
         //Methods
-        public IEnumerable<SelectListItem> GetSemesterListItems()
+        /*public IEnumerable<SelectListItem> GetSemesterListItems()
         {
             List<SelectListItem> semesterList = Enum.GetValues(typeof(Semester))
                 .Cast<Semester>()
@@ -53,7 +53,7 @@ namespace UniversitySystem.Models
             semesterList.Insert(0, semesterTip);
 
             return new SelectList(semesterList, "Value", "Text");
-        }
+        }*/
 
         public bool CheckCourseCodeAvailability(string courseCode)
         {
