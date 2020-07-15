@@ -30,7 +30,7 @@ namespace UniversitySystem.Controllers
             var courseViewModel = new CourseViewModel
             {
                 Departments = department.GetDepartments(),
-                Semesters = course.GetSemesterListItems()
+                Semesters = Enum<Semester>.GetListItems()
             };
 
             return View(courseViewModel);
@@ -67,7 +67,7 @@ namespace UniversitySystem.Controllers
                 CourseCredit = courseViewModel.CourseCredit,
                 CourseDescription = courseViewModel.CourseDescription,
                 DepartmentId = courseViewModel.SelectedDepartmentId,
-                SemesterId = courseViewModel.SelectedSemesterId,
+                SemesterId = (Semester) courseViewModel.SelectedSemesterId,
                 Department = _context.Departments.Find(courseViewModel.SelectedDepartmentId)
             };
 
@@ -77,18 +77,18 @@ namespace UniversitySystem.Controllers
             return true;
         }*/
 
-        public ActionResult GetDepartmentDropdownItems()
+        /*public ActionResult GetDepartmentDropdownItems()
         {
             var department = new Department();
 
             return Json(department.GetDepartments(), JsonRequestBehavior.AllowGet);
-        }
+        }*/
 
-        public ActionResult GetSemesterDropdownItems()
+        /*public ActionResult GetSemesterDropdownItems()
         {
             var course = new Course();
 
             return Json(course.GetSemesterListItems(), JsonRequestBehavior.AllowGet);
-        }
+        }*/
     }
 }

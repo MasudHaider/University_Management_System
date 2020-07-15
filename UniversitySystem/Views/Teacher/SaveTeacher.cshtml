@@ -1,0 +1,202 @@
+﻿@model UniversitySystem.ViewModels.TeacherViewModel
+@{
+    ViewBag.Title = "Save Teacher";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Save Teacher</h2>
+
+<form id="teacherForm" class="form-needs-validation" novalidate="" method="post">
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="teacherEmailInput">Name:</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="teacherNameInput" name="TeacherName" placeholder="Ex: John Doe" required />
+                <div id="teacherNameStatus"></div>
+                <div class="invalid-feedback">
+                    Please enter teacher's name
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="teacherAddressInput">Address:</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="teacherAddressInput" name="TeacherAddress" placeholder="Ex: 41st Street, DTown" required />
+                <div id="teacherAddressStatus"></div>
+                <div class="invalid-feedback">
+                    Please enter teacher's address
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="teacherEmailInput">Email:</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="teacherEmailInput" data-input-for="teacherEmail" name="TeacherEmail" placeholder="Ex: example.com" required />
+                <div id="teacherEmailStatus"></div>
+                <div class="invalid-feedback">
+                    Please enter teacher's email
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="teacherContactInput">Contact Number:</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="teacherContactInput" name="TeacherContactNumber" placeholder="Ex: 1-(555)-555-5555" required />
+                <div id="teacherContactStatus"></div>
+                <div class="invalid-feedback">
+                    Please enter teacher's contact number
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="selectedDesignationId">Designation:</label>
+        <select class="form-control" id="selectedDesignationId" name="SelectedDesignationId" required></select>
+        <div id="teacherDesignationStatus"></div>
+        <div class="invalid-feedback">
+            Please select a designation.
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="selectedTeacherDepartmentId">Department</label>
+        <select class="form-control" id="selectedTeacherDepartmentId" name="SelectedTeacherDepartmentId" required></select>
+        <div id="teacherDepartmentStatus"></div>
+        <div class="invalid-feedback">
+            Please select a department.
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="teacherCreditInput">Credits to be Taken:</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="teacherCreditInput" placeholder="Ex: 2.5" name="TeacherCredits" required />
+                <div id="teacherCreditStatus"></div>
+                <div class="invalid-feedback">
+                    Please enter credits to be taken.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn btn-primary" id="saveTeacherButton" type="submit">Save</button>
+</form>
+
+@section scripts
+{
+    <script src="~/Scripts/jquery-3.0.0.js"></script>
+    <script src="~/Scripts/Teacher/teacher-form-validator.js"></script>
+    <script>
+        $(document).ready(function () {
+            populateDesignationDropdown();
+            populateDepartmentDropdown();
+            verifyTeacherEmail();
+            verifyTeacherContact();
+        });
+
+        function populateDesignationDropdown() {
+            var designationDropdown = $("#selectedDesignationId");
+            designationDropdown.empty();
+            var designations = @Html.Raw(Json.Encode(Model.Designations));
+
+            $.each(designations,
+                function() {
+                    designationDropdown.append($('<option/>',
+                        {
+                            value: this.Value,
+                            html: this.Text
+                        }));
+                });
+        }
+
+        function populateDepartmentDropdown() {
+            var departments = @Html.Raw(Json.Encode(Model.Departments));
+            $("#selectedTeacherDepartmentId").append($('<option/>',
+                {
+                    html: departments[0].Text
+                }));
+
+            $("#selectedDesignationId").change(function () {
+                $("#selectedTeacherDepartmentId").find('option:gt(0)').remove();
+
+                if ($(this).val() > 0) {
+                    console.log($(this).val());
+                    $("#selectedTeacherDepartmentId").empty();
+                    $.each(departments,
+                        function() {
+                            $("#selectedTeacherDepartmentId").append($('<option/>',
+                                {
+                                    value: this.Value,
+                                    html: this.Text
+                                }));
+                        });
+                }
+            });
+        }
+
+        function verifyTeacherEmail() {
+            $("#teacherEmailInput").change(function () {
+                var teacherEmailData = $(this).val();
+                if (/^[A-Za-z]+([\.-]?\w+)*@@[A-Za-z]+([\.-]?\w+)*(\.\w{2,4})+$/.test(teacherEmailData)) {
+                    $.ajax({
+                        url: '@Url.Action("CheckTeacherEmailAvailability", "Teacher")',
+                        type: 'POST',
+                        data: JSON.stringify({ teacherEmail: teacherEmailData }),
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        success: function(doesEmailExists) {
+                            if (doesEmailExists === false) {
+                                $("#teacherEmailStatus").html('<font color="Green">Available!</font>');
+                                $("#saveTeacherButton").removeAttr('disabled', 'disabled');
+                            } else {
+                                $("#teacherEmailStatus").html('<font color="Red">Not available</font>');
+                                $("#teacherEmailInput").focus();
+                                $("#saveTeacherButton").attr('disabled', 'disabled');
+                            }
+                        }
+                    });
+                } else {
+                    $("#teacherEmailStatus").html('<font color="Red">Provide a valid email</font>');
+                    $('#saveTeacherButton').attr('disabled', 'disabled');
+                }
+            });
+        }
+
+        function verifyTeacherContact() {
+            $("#teacherContactInput").change(function () {
+                var teacherContactData = $(this).val();
+                if (/^\d{11}$/.test(teacherContactData)) {
+
+                    //if ($("#teacherEmailInput").val().trim().length >= 10 && $("#teacherEmailInput").val().trim().length <= 30) {
+
+                    //$('#saveCourseButton').attr('disabled', 'disabled');
+                    $.ajax({
+                        url: '@Url.Action("CheckTeacherContactAvailability", "Teacher")',
+                        type: 'POST',
+                        data: JSON.stringify({ teacherContact: teacherContactData }),
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        success: function(doesContactExist) {
+                            if (doesContactExist === false) {
+                                $("#teacherContactStatus").html('<font color="Green">Available!</font>');
+                                $("#saveTeacherButton").removeAttr('disabled', 'disabled');
+                            } else {
+                                $("#teacherContactStatus").html('<font color="Red">Not available</font>');
+                                $("#teacherContactInput").focus();
+                                $("#saveTeacherButton").attr('disabled', 'disabled');
+                            }
+                        }
+                    });
+                } else {
+                    $("#teacherContactStatus").html('<font color="Red">Contact must be 11 digits</font>');
+                    $('#saveTeacherButton').attr('disabled', 'disabled');
+                }
+            });
+        }
+    </script>
+}

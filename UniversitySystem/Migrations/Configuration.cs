@@ -1,3 +1,5 @@
+using UniversitySystem.Models;
+
 namespace UniversitySystem.Migrations
 {
     using System;
@@ -26,6 +28,16 @@ namespace UniversitySystem.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            /*context.Designations.AddOrUpdate(d => d.Id,
+                Enum.GetValues(typeof(Designations))
+                    .OfType<Designations>()
+                    .Select(d => new Designation()
+                    {
+                        Id = d,
+                        DesignationName = d.ToString()
+                    })
+                    .ToArray());*/
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -30,6 +28,8 @@ namespace UniversitySystem.Controllers.Api
             return NotFound();
         }
 
+
+
         //POST /api/Courses/
         [HttpPost]
         public HttpResponseMessage CreateCourse(CourseViewModel courseViewModel)
@@ -44,7 +44,7 @@ namespace UniversitySystem.Controllers.Api
                 CourseCredit = courseViewModel.CourseCredit,
                 CourseDescription = courseViewModel.CourseDescription,
                 DepartmentId = courseViewModel.SelectedDepartmentId,
-                SemesterId = courseViewModel.SelectedSemesterId,
+                SemesterId = (Semester)courseViewModel.SelectedSemesterId,
                 Department = _context.Departments.Find(courseViewModel.SelectedDepartmentId)
             };
 

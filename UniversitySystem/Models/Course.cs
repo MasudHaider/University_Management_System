@@ -31,13 +31,13 @@ namespace UniversitySystem.Models
 
         public int DepartmentId { get; set; }
 
-        public SemesterList SemesterId { get; set; }
+        public Semester SemesterId { get; set; }
 
         //Methods
-        public IEnumerable<SelectListItem> GetSemesterListItems()
+        /*public IEnumerable<SelectListItem> GetSemesterListItems()
         {
-            List<SelectListItem> semesterList = Enum.GetValues(typeof(SemesterList))
-                .Cast<SemesterList>()
+            List<SelectListItem> semesterList = Enum.GetValues(typeof(Semester))
+                .Cast<Semester>()
                 .Select(s => new SelectListItem
                 {
                     Value = s.ToString(),
@@ -53,7 +53,7 @@ namespace UniversitySystem.Models
             semesterList.Insert(0, semesterTip);
 
             return new SelectList(semesterList, "Value", "Text");
-        }
+        }*/
 
         public bool CheckCourseCodeAvailability(string courseCode)
         {
@@ -66,7 +66,7 @@ namespace UniversitySystem.Models
         }
     }
 
-    public enum SemesterList
+    public enum Semester
     {
         [Description("1st")]
         First = 1,
