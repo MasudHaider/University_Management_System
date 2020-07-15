@@ -34,12 +34,12 @@
                                     success: function (response) {
                                         console.log((response.length));
                                     }
-                            });
-                        }
+                                });
+                            }
                             form.classList.add('was-validated');
-                },
+                        },
                         false);
-        });
-},
+                });
+        },
         false);
 })();
