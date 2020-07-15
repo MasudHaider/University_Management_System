@@ -19,7 +19,7 @@ namespace UniversitySystem.ViewModels
         public int SelectedDesignationId { get; set; }
         public IEnumerable<SelectListItem> Designations { get; set; }
 
-        public int SelectedDepartmentId { get; set; }
+        public int SelectedTeacherDepartmentId { get; set; }
         public IEnumerable<SelectListItem> Departments { get; set; }
 
         public float TeacherCredits { get; set; }

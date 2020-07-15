@@ -3,7 +3,7 @@
     ViewBag.Title = "Save Teacher";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<link href="~/Scripts/Teacher/style-errors.css" rel="stylesheet" />
+
 <h2>Save Teacher</h2>
 
 <form id="teacherForm" class="form-needs-validation" novalidate="" method="post">
@@ -64,8 +64,8 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="selectedDepartmentId">Department</label>
-        <select class="form-control" id="selectedDepartmentId" name="SelectedDepartmentId" required></select>
+        <label for="selectedTeacherDepartmentId">Department</label>
+        <select class="form-control" id="selectedTeacherDepartmentId" name="SelectedTeacherDepartmentId" required></select>
         <div id="teacherDepartmentStatus"></div>
         <div class="invalid-feedback">
             Please select a department.
@@ -90,8 +90,7 @@
 @section scripts
 {
     <script src="~/Scripts/jquery-3.0.0.js"></script>
-    <script src="../../Scripts/Teacher/teacher-form-validator.js"></script>
-    
+    <script src="~/Scripts/Teacher/teacher-form-validator.js"></script>
     <script>
         $(document).ready(function () {
             populateDesignationDropdown();
@@ -117,19 +116,20 @@
 
         function populateDepartmentDropdown() {
             var departments = @Html.Raw(Json.Encode(Model.Departments));
-            $("#selectedDepartmentId").append($('<option/>',
+            $("#selectedTeacherDepartmentId").append($('<option/>',
                 {
                     html: departments[0].Text
                 }));
 
             $("#selectedDesignationId").change(function () {
-                $("#selectedDepartmentId").find('option:gt(0)').remove();
+                $("#selectedTeacherDepartmentId").find('option:gt(0)').remove();
 
                 if ($(this).val() > 0) {
-                    $("#selectedDepartmentId").empty();
+                    console.log($(this).val());
+                    $("#selectedTeacherDepartmentId").empty();
                     $.each(departments,
                         function() {
-                            $("#selectedDepartmentId").append($('<option/>',
+                            $("#selectedTeacherDepartmentId").append($('<option/>',
                                 {
                                     value: this.Value,
                                     html: this.Text
@@ -143,10 +143,6 @@
             $("#teacherEmailInput").change(function () {
                 var teacherEmailData = $(this).val();
                 if (/^[A-Za-z]+([\.-]?\w+)*@@[A-Za-z]+([\.-]?\w+)*(\.\w{2,4})+$/.test(teacherEmailData)) {
-
-                //if ($("#teacherEmailInput").val().trim().length >= 10 && $("#teacherEmailInput").val().trim().length <= 30) {
-                    
-                    //$('#saveCourseButton').attr('disabled', 'disabled');
                     $.ajax({
                         url: '@Url.Action("CheckTeacherEmailAvailability", "Teacher")',
                         type: 'POST',
@@ -177,7 +173,7 @@
                 if (/^\d{11}$/.test(teacherContactData)) {
 
                     //if ($("#teacherEmailInput").val().trim().length >= 10 && $("#teacherEmailInput").val().trim().length <= 30) {
-                    
+
                     //$('#saveCourseButton').attr('disabled', 'disabled');
                     $.ajax({
                         url: '@Url.Action("CheckTeacherContactAvailability", "Teacher")',

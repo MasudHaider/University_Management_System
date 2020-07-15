@@ -31,7 +31,7 @@ namespace UniversitySystem.Controllers
             return View(teacherViewModel);
         }
 
-        [HttpPost]
+        /*[HttpPost]
         public bool SaveTeacher(TeacherViewModel teacherViewModel)
         {
             if (teacherViewModel == null)
@@ -44,16 +44,16 @@ namespace UniversitySystem.Controllers
                 TeacherEmail = teacherViewModel.TeacherEmail,
                 TeacherContactNumber = teacherViewModel.TeacherContactNumber,
                 TeacherCredits = teacherViewModel.TeacherCredits,
-                DepartmentId = teacherViewModel.SelectedDepartmentId,
+                DepartmentId = teacherViewModel.SelectedTeacherDepartmentId,
                 DesignationId = (Designations) teacherViewModel.SelectedDesignationId,
-                Department = _context.Departments.Find(teacherViewModel.SelectedDepartmentId)
+                Department = _context.Departments.Find(teacherViewModel.SelectedTeacherDepartmentId)
             };
 
             _context.Teachers.Add(teacher);
             _context.SaveChanges();
 
             return true;
-        }
+        }*/
 
         public JsonResult CheckTeacherEmailAvailability(string teacherEmail)
         {
