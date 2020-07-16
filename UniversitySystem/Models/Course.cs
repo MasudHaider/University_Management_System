@@ -34,27 +34,6 @@ namespace UniversitySystem.Models
         public Semester SemesterId { get; set; }
 
         //Methods
-        /*public IEnumerable<SelectListItem> GetSemesterListItems()
-        {
-            List<SelectListItem> semesterList = Enum.GetValues(typeof(Semester))
-                .Cast<Semester>()
-                .Select(s => new SelectListItem
-                {
-                    Value = s.ToString(),
-                    Text = s.ToString()
-                }).ToList();
-
-            var semesterTip = new SelectListItem
-            {
-                Value = "0",
-                Text = "--Select Semester--"
-            };
-
-            semesterList.Insert(0, semesterTip);
-
-            return new SelectList(semesterList, "Value", "Text");
-        }*/
-
         public bool CheckCourseCodeAvailability(string courseCode)
         {
             return _context.Courses.Any(c => c.CourseCode == courseCode);
@@ -63,6 +42,19 @@ namespace UniversitySystem.Models
         public bool CheckCourseNameAvailability(string courseName)
         {
             return _context.Courses.Any(c => c.CourseName == courseName);
+        }
+
+        public IEnumerable<SelectListItem> GetCoursesByDepartment(int? id)
+        {
+            List<SelectListItem> coursesByDepartment = _context.Courses.Where(t => t.DepartmentId == id)
+                .OrderBy(t => t.CourseCode)
+                .Select(t => new SelectListItem
+                {
+                    Value = t.Id.ToString(),
+                    Text = t.CourseCode
+                }).ToList();
+
+            return new SelectList(coursesByDepartment, "Value", "Text");
         }
     }
 
@@ -85,55 +77,4 @@ namespace UniversitySystem.Models
         [Description("8th")]
         Eighth
     }
-
-    /*public class Enum<T> where T : struct, IConvertible
-    {
-        public static List<SelectListItem> GetSemesterListItems()
-        {
-            List<SelectListItem> items = new List<SelectListItem>();
-
-
-            Type type = typeof(T);
-
-            if (type.IsEnum)
-            {
-                Array values = Enum.GetValues(type);
-
-                foreach (int val in values)
-                {
-
-                    var memInfo = type.GetMember(type.GetEnumName(val));
-                    var descriptionAttributes = memInfo[0].GetCustomAttributes(typeof(DescriptionAttribute), false);
-                    SelectListItem item = new SelectListItem
-                    {
-                        Text = val.ToString(),
-                        Value = val.ToString()
-                    };
-                    if (descriptionAttributes.Length > 0)
-                    {
-
-                        item.Text = ((DescriptionAttribute)descriptionAttributes[0]).Description;
-                    }
-                    items.Add(item);
-
-
-                }
-
-            }
-            return items;
-        }*/
-
-    /*private string GetEnumDisplayName<T>(T value) where T : struct
-    {
-        var memberInfo = value.GetType().GetMember(value.ToString());
-        if (memberInfo.Length != 1)
-            return null;
-
-        var displayAttribute = memberInfo[0].GetCustomAttributes(typeof(DisplayAttribute), false) as DisplayAttribute[];
-
-        if (displayAttribute == null || displayAttribute.Length != 1)
-            return null;
-
-        return displayAttribute[0].Name;
-    }*/
 }

@@ -60,7 +60,7 @@ namespace UniversitySystem.Controllers
 
             var courseAssignViewModel = new CourseAssignToTeacherViewModel
             {
-                Departments = department.GetDepartments(),
+                Departments = department.GetDepartments()
             };
 
             return View(courseAssignViewModel);
@@ -79,41 +79,16 @@ namespace UniversitySystem.Controllers
             return Json(courseAssignViewModel.Teachers, JsonRequestBehavior.AllowGet);
         }
 
-        /*[HttpPost]
-        public bool SaveCourse(CourseViewModel courseViewModel)
-        {
-            if (courseViewModel == null)
-                return false;
-
-            var course = new Course
-            {
-                CourseCode = courseViewModel.CourseCode,
-                CourseName = courseViewModel.CourseName,
-                CourseCredit = courseViewModel.CourseCredit,
-                CourseDescription = courseViewModel.CourseDescription,
-                DepartmentId = courseViewModel.SelectedDepartmentId,
-                SemesterId = (Semester) courseViewModel.SelectedSemesterId,
-                Department = _context.Departments.Find(courseViewModel.SelectedDepartmentId)
-            };
-
-            _context.Courses.Add(course);
-            _context.SaveChanges();
-
-            return true;
-        }*/
-
-        /*public ActionResult GetDepartmentDropdownItems()
-        {
-            var department = new Department();
-
-            return Json(department.GetDepartments(), JsonRequestBehavior.AllowGet);
-        }*/
-
-        /*public ActionResult GetSemesterDropdownItems()
+        public JsonResult GetCoursesByDepartment(int? id)
         {
             var course = new Course();
 
-            return Json(course.GetSemesterListItems(), JsonRequestBehavior.AllowGet);
-        }*/
+            var courseAssignViewModel = new CourseAssignToTeacherViewModel
+            {
+                CourseCodes = course.GetCoursesByDepartment(id)
+            };
+
+            return Json(courseAssignViewModel.CourseCodes, JsonRequestBehavior.AllowGet);
+        }
     }
 }

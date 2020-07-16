@@ -91,8 +91,18 @@
                 {
                     html: "--Select a Teacher--"
                 }));
+
+            var coursesDropdown = $("#deptCourseAssignment");
+            coursesDropdown.empty();
+            coursesDropdown.append($('<option/>',
+                {
+                    html: "--Select a Course Code--"
+                }));
+
             $("#courseAssignedDepartment").change(function() {
                 teacherDropdown.find('option:gt(0)').remove();
+                coursesDropdown.find('option:gt(0)').remove();
+
                 var selectedDept = $(this).val();
 
                 if (selectedDept > 0) {
@@ -113,9 +123,44 @@
                                 });
                         }
                     });
+
+                    $.ajax({
+                        url: '@Url.Action("GetCoursesByDepartment", "Course")',
+                        method: "POST",
+                        data: JSON.stringify({ id: selectedDept }),
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        success: function(courses) {
+                            $.each(courses,
+                                function() {
+                                    coursesDropdown.append($('<option/>',
+                                        {
+                                            value: this.Value,
+                                            html: this.Text
+                                        }));
+                                });
+                        }
+                    });
                 }
             });
         }
+
+        /*function populateCoursesDropdown() {
+            var coursesDropdown = $("#courseAssignedTeacher");
+            coursesDropdown.empty();
+            coursesDropdown.append($('<option/>',
+                {
+                    html: "--Select a Course Code--"
+                }));
+            $("#courseAssignedDepartment").change(function() {
+                coursesDropdown.find('option:gt(0)').remove();
+                var selectedDepartment = $(this).val();
+
+                if (selectedDepartment > 0) {
+
+                }
+            });
+        }*/
 
     </script>
 }
