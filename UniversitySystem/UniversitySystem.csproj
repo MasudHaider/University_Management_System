@@ -204,7 +204,6 @@
     <Compile Include="Controllers\Api\CoursesController.cs" />
     <Compile Include="Controllers\Api\DepartmentsController.cs" />
     <Compile Include="Controllers\Api\TeachersController.cs" />
-    <Compile Include="Controllers\AssignCourseToTeacherController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -399,11 +398,10 @@
     <Content Include="Views\Department\Index.cshtml" />
     <Content Include="Views\Course\SaveCourse.cshtml" />
     <Content Include="Views\Teacher\SaveTeacher.cshtml" />
-    <Content Include="Views\AssignCourseToTeacher\AssignCourseToTeacher.cshtml" />
+    <Content Include="Views\Course\AssignCourseToTeacher.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\CourseAssignToTeacher\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

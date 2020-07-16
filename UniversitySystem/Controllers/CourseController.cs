@@ -25,7 +25,6 @@ namespace UniversitySystem.Controllers
         public ActionResult SaveCourse()
         {
             var department = new Department();
-            var course = new Course();
 
             var courseViewModel = new CourseViewModel
             {
@@ -52,6 +51,32 @@ namespace UniversitySystem.Controllers
             var courseNameAvailability = course.CheckCourseNameAvailability(courseName);
 
             return Json(courseNameAvailability, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult AssignCourseToTeacher()
+        {
+            var department = new Department();
+
+            var courseAssignViewModel = new CourseAssignToTeacherViewModel
+            {
+                Departments = department.GetDepartments(),
+            };
+
+            return View(courseAssignViewModel);
+        }
+
+        public JsonResult GetTeachersByDepartment(int? id)
+        {
+            var teacher = new Teacher();
+
+            //IEnumerable<SelectListItem> teachersByDepartment = teacher.GetTeachersByDepartment(id);
+            var courseAssignViewModel = new CourseAssignToTeacherViewModel
+            {
+                Teachers = teacher.GetTeachersByDepartment(id)
+            };
+
+            return Json(courseAssignViewModel.Teachers, JsonRequestBehavior.AllowGet);
         }
 
         /*[HttpPost]

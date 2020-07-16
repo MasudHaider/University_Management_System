@@ -93,13 +93,13 @@
                 }));
             $("#courseAssignedDepartment").change(function() {
                 teacherDropdown.find('option:gt(0)').remove();
-                var seletedDept = $(this).val();
+                var selectedDept = $(this).val();
 
-                if (seletedDept > 0) {
+                if (selectedDept > 0) {
                     $.ajax({
-                        url: '@Url.Action("GetTeachersByDepartment", "AssignCourseToTeacher")',
+                        url: '@Url.Action("GetTeachersByDepartment", "Course")',
                         method: "POST",
-                        data: JSON.stringify({id: seletedDept}),
+                        data: JSON.stringify({ id: selectedDept }),
                         dataType: "json",
                         contentType: "application/json; charset=utf-8",
                         success: function(teachers) {
@@ -119,3 +119,4 @@
 
     </script>
 }
+
