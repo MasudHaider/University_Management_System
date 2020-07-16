@@ -25,8 +25,10 @@ namespace UniversitySystem.Models
         public string DepartmentName { get; set; }
 
         public virtual ICollection<Course> Courses { get; set; }
+        public int? CourseId { get; set; }
 
         public virtual ICollection<Teacher> Teachers { get; set; }
+        public int? TeacherId { get; set; }
 
 
         //Get all the departments

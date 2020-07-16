@@ -1,0 +1,62 @@
+﻿@model UniversitySystem.ViewModels.CourseAssignToTeacherViewModel
+@{
+    ViewBag.Title = "AssignCourseToTeacher";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Assign Course To Teacher</h2>
+
+<div class="form-group">
+    <label for="courseAssignedDepartment">Department</label>
+    <select class="form-control" id="courseAssignedDepartment" name="CourseAssignedDepartment" required></select>
+    <div id="courseAssignDeptStatus"></div>
+    <div class="invalid-feedback">
+        Please select a department.
+    </div>
+</div>
+<div class="form-group">
+    <label for="courseAssignedTeacher">Teacher</label>
+    <select class="form-control" id="courseAssignedTeacher" name="CourseAssignedTeacher" required></select>
+    <div id="courseAssignTeacherStatus"></div>
+    <div class="invalid-feedback">
+        Please select a teacher's name.
+    </div>
+</div>
+<div class="form-row">
+    <div class="col-md-4 mb-3">
+        <label for="teachersTotalCredit">Credit to be taken</label>
+        <input type="text" class="form-control" id="teachersTotalCredit" name="TeachersTotalCredit" readonly/>
+        <div id="totalCreditStatus"></div>
+    </div>
+</div>
+<div class="form-row">
+    <div class="col-md-4 mb-3">
+        <label for="remCreditOfTeacher">Remaining Credit</label>
+        <input type="text" class="form-control" id="remCreditOfTeacher" name="TeachersRemainingCredit" readonly />
+        <div id="remCreditOfTeacherStatus"></div>
+    </div>
+</div>
+<div class="form-group">
+    <label for="deptCourseAssignment">Course Code</label>
+    <select class="form-control" id="deptCourseAssignment" name="AssignedCourse" required></select>
+    <div id="deptCourseAssignmentStatus"></div>
+    <div class="invalid-feedback">
+        Please select a course code.
+    </div>
+</div>
+<div class="form-row">
+    <div class="col-md-4 mb-3">
+        <label for="nameOfSelectedCourse">Course Name</label>
+        <input type="text" class="form-control" id="nameOfSelectedCourse" name="SelectedCourseName" readonly />
+        <div id="nameOfSelectedCourseStatus"></div>
+    </div>
+</div>
+<div class="form-row">
+    <div class="col-md-4 mb-3">
+        <label for="creditOfSelectedCourse">Course Credit</label>
+        <input type="text" class="form-control" id="creditOfSelectedCourse" name="SelectedCourseCredit" readonly />
+        <div id="creditOfSelectedCourseStatus"></div>
+    </div>
+</div>
+
+

@@ -224,3 +224,4 @@ E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrati
 E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.AddDesignationClassWithEnumAndSeed.resources
 E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.RemoveDesignationFromTeacherAsALookupTable.resources
 E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.RemoveDesignationTable.resources
+E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.AddNullableCourseAndTeacherIdToDepartment.resources

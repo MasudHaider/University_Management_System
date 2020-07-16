@@ -204,6 +204,7 @@
     <Compile Include="Controllers\Api\CoursesController.cs" />
     <Compile Include="Controllers\Api\DepartmentsController.cs" />
     <Compile Include="Controllers\Api\TeachersController.cs" />
+    <Compile Include="Controllers\AssignCourseToTeacherController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -268,6 +269,10 @@
     <Compile Include="Migrations\202007070551418_RemoveDesignationTable.Designer.cs">
       <DependentUpon>202007070551418_RemoveDesignationTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007160548272_AddNullableCourseAndTeacherIdToDepartment.cs" />
+    <Compile Include="Migrations\202007160548272_AddNullableCourseAndTeacherIdToDepartment.Designer.cs">
+      <DependentUpon>202007160548272_AddNullableCourseAndTeacherIdToDepartment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Configurations\CourseEntityConfiguration.cs" />
@@ -280,6 +285,7 @@
     <Compile Include="Models\Teacher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\CourseAssignToTeacherViewModel.cs" />
     <Compile Include="ViewModels\CourseViewModel.cs" />
     <Compile Include="ViewModels\TeacherViewModel.cs" />
   </ItemGroup>
@@ -393,9 +399,11 @@
     <Content Include="Views\Department\Index.cshtml" />
     <Content Include="Views\Course\SaveCourse.cshtml" />
     <Content Include="Views\Teacher\SaveTeacher.cshtml" />
+    <Content Include="Views\AssignCourseToTeacher\AssignCourseToTeacher.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\CourseAssignToTeacher\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -448,6 +456,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007070551418_RemoveDesignationTable.resx">
       <DependentUpon>202007070551418_RemoveDesignationTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007160548272_AddNullableCourseAndTeacherIdToDepartment.resx">
+      <DependentUpon>202007160548272_AddNullableCourseAndTeacherIdToDepartment.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
