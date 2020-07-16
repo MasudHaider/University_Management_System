@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using UniversitySystem.Models;
 using UniversitySystem.ViewModels;
@@ -30,6 +31,15 @@ namespace UniversitySystem.Controllers
             };
 
             return View(courseAssignViewModel);
+        }
+
+        public JsonResult GetTeachersByDepartment(int? id)
+        {
+            var teacher = new Teacher();
+
+            IEnumerable<SelectListItem> teachersByDepartment = teacher.GetTeachersByDepartment(id);
+
+            return Json(teachersByDepartment, JsonRequestBehavior.AllowGet);
         }
     }
 }

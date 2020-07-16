@@ -46,6 +46,19 @@ namespace UniversitySystem.Models
         {
             return _context.Teachers.Any(t => t.TeacherContactNumber == teacherContact);
         }
+
+        public IEnumerable<SelectListItem> GetTeachersByDepartment(int? id)
+        {
+            List<SelectListItem> teachersByDepartment = _context.Teachers.Where(t => t.DepartmentId == id)
+                .OrderBy(t => t.TeacherName)
+                .Select(t => new SelectListItem
+                {
+                    Value = t.Id.ToString(),
+                    Text = t.TeacherName
+                }).ToList();
+
+            return new SelectList(teachersByDepartment, "Value", "Text");
+        }
     }
 
     public enum Designations

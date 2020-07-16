@@ -25,7 +25,7 @@
 <div class="form-row">
     <div class="col-md-4 mb-3">
         <label for="teachersTotalCredit">Credit to be taken</label>
-        <input type="text" class="form-control" id="teachersTotalCredit" name="TeachersTotalCredit" readonly/>
+        <input type="text" class="form-control" id="teachersTotalCredit" name="TeachersTotalCredit" readonly />
         <div id="totalCreditStatus"></div>
     </div>
 </div>
@@ -59,4 +59,63 @@
     </div>
 </div>
 
+@section scripts
+{
+    <script src="~/Scripts/jquery-3.0.0.js"></script>
 
+    <script>
+        $(document).ready(function() {
+            populateDepartmentDropdown();
+            populateTeachersDropdown();
+        });
+
+        function populateDepartmentDropdown() {
+            var departmentDropdown = $("#courseAssignedDepartment");
+            departmentDropdown.empty();
+            var dept = @Html.Raw(Json.Encode(Model.Departments));
+
+            $.each(dept,
+                function() {
+                    departmentDropdown.append($('<option/>',
+                        {
+                            value: this.Value,
+                            html: this.Text
+                        }));
+                });
+        }
+
+        function populateTeachersDropdown() {
+            var teacherDropdown = $("#courseAssignedTeacher");
+            teacherDropdown.empty();
+            teacherDropdown.append($('<option/>',
+                {
+                    html: "--Select a Teacher--"
+                }));
+            $("#courseAssignedDepartment").change(function() {
+                teacherDropdown.find('option:gt(0)').remove();
+                var seletedDept = $(this).val();
+
+                if (seletedDept > 0) {
+                    $.ajax({
+                        url: '@Url.Action("GetTeachersByDepartment", "AssignCourseToTeacher")',
+                        method: "POST",
+                        data: JSON.stringify({id: seletedDept}),
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        success: function(teachers) {
+                            $.each(teachers,
+                                function() {
+                                    teacherDropdown.append($('<option/>',
+                                        {
+                                            value: this.Value,
+                                            html: this.Text
+                                        }));
+                                });
+                        }
+                    });
+                }
+            });
+        }
+
+    </script>
+}
