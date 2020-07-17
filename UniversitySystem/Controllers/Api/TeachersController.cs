@@ -58,7 +58,8 @@ namespace UniversitySystem.Controllers.Api
                 DesignationId = (Designations) teacherViewModel.SelectedDesignationId,
                 DepartmentId = teacherViewModel.SelectedTeacherDepartmentId,
                 Department = _context.Departments.Find(teacherViewModel.SelectedTeacherDepartmentId),
-                TeacherCredits = teacherViewModel.TeacherCredits
+                TeacherCredits = teacherViewModel.TeacherCredits,
+                RemainingCredits = teacherViewModel.TeacherCredits
             };
 
             _context.Teachers.Add(teacher);

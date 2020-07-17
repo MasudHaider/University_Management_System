@@ -225,3 +225,6 @@ E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrati
 E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.RemoveDesignationFromTeacherAsALookupTable.resources
 E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.RemoveDesignationTable.resources
 E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.AddNullableCourseAndTeacherIdToDepartment.resources
+E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.AddRemainingCreditPropertyToTeacher.resources
+E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.DeleteRemainingCreditOfTeacher.resources
+E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.AddRemainingCreditToTeacher.resources

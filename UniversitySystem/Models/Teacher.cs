@@ -34,6 +34,7 @@ namespace UniversitySystem.Models
         public int DepartmentId { get; set; }
 
         public float TeacherCredits { get; set; }
+        public float RemainingCredits { get; set; }
 
 
         //Methods
@@ -59,6 +60,21 @@ namespace UniversitySystem.Models
 
             return new SelectList(teachersByDepartment, "Value", "Text");
         }
+
+        public string GetTeacherCreditDetails(int id)
+        {
+            var teacher = _context.Teachers.Where(t => t.Id == id).ToList();
+
+            float creditDetails = 0;
+
+            foreach (var t in teacher)
+            {
+                creditDetails = t.TeacherCredits;
+            }
+
+            return creditDetails.ToString();
+        }
+
     }
 
     public enum Designations

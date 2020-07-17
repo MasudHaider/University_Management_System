@@ -272,6 +272,18 @@
     <Compile Include="Migrations\202007160548272_AddNullableCourseAndTeacherIdToDepartment.Designer.cs">
       <DependentUpon>202007160548272_AddNullableCourseAndTeacherIdToDepartment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007171316476_AddRemainingCreditPropertyToTeacher.cs" />
+    <Compile Include="Migrations\202007171316476_AddRemainingCreditPropertyToTeacher.Designer.cs">
+      <DependentUpon>202007171316476_AddRemainingCreditPropertyToTeacher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007171338008_DeleteRemainingCreditOfTeacher.cs" />
+    <Compile Include="Migrations\202007171338008_DeleteRemainingCreditOfTeacher.Designer.cs">
+      <DependentUpon>202007171338008_DeleteRemainingCreditOfTeacher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007171339318_AddRemainingCreditToTeacher.cs" />
+    <Compile Include="Migrations\202007171339318_AddRemainingCreditToTeacher.Designer.cs">
+      <DependentUpon>202007171339318_AddRemainingCreditToTeacher.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Configurations\CourseEntityConfiguration.cs" />
@@ -457,6 +469,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007160548272_AddNullableCourseAndTeacherIdToDepartment.resx">
       <DependentUpon>202007160548272_AddNullableCourseAndTeacherIdToDepartment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007171316476_AddRemainingCreditPropertyToTeacher.resx">
+      <DependentUpon>202007171316476_AddRemainingCreditPropertyToTeacher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007171338008_DeleteRemainingCreditOfTeacher.resx">
+      <DependentUpon>202007171338008_DeleteRemainingCreditOfTeacher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007171339318_AddRemainingCreditToTeacher.resx">
+      <DependentUpon>202007171339318_AddRemainingCreditToTeacher.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

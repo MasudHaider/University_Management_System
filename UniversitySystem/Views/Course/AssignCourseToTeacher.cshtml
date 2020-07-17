@@ -25,14 +25,14 @@
 <div class="form-row">
     <div class="col-md-4 mb-3">
         <label for="teachersTotalCredit">Credit to be taken</label>
-        <input type="text" class="form-control" id="teachersTotalCredit" name="TeachersTotalCredit" readonly />
+        <input type="text" class="form-control" id="teachersTotalCredit" name="TeachersTotalCredit" value="" readonly="readonly" />
         <div id="totalCreditStatus"></div>
     </div>
 </div>
 <div class="form-row">
     <div class="col-md-4 mb-3">
         <label for="remCreditOfTeacher">Remaining Credit</label>
-        <input type="text" class="form-control" id="remCreditOfTeacher" name="TeachersRemainingCredit" readonly />
+        <input type="text" class="form-control" id="remCreditOfTeacher" name="TeachersRemainingCredit" readonly="readonly" />
         <div id="remCreditOfTeacherStatus"></div>
     </div>
 </div>
@@ -66,7 +66,7 @@
     <script>
         $(document).ready(function() {
             populateDepartmentDropdown();
-            populateTeachersDropdown();
+            populateTeachersAndCoursesDropdown();
         });
 
         function populateDepartmentDropdown() {
@@ -84,7 +84,7 @@
                 });
         }
 
-        function populateTeachersDropdown() {
+        function populateTeachersAndCoursesDropdown() {
             var teacherDropdown = $("#courseAssignedTeacher");
             teacherDropdown.empty();
             teacherDropdown.append($('<option/>',
@@ -145,22 +145,26 @@
             });
         }
 
-        /*function populateCoursesDropdown() {
-            var coursesDropdown = $("#courseAssignedTeacher");
-            coursesDropdown.empty();
-            coursesDropdown.append($('<option/>',
-                {
-                    html: "--Select a Course Code--"
-                }));
-            $("#courseAssignedDepartment").change(function() {
-                coursesDropdown.find('option:gt(0)').remove();
-                var selectedDepartment = $(this).val();
+        $("#courseAssignedTeacher").change(function() {
+            if ($(this).val() > 0) {
+                var selectedTeacher = $(this).val();
 
-                if (selectedDepartment > 0) {
-
-                }
-            });
-        }*/
+                $.ajax({
+                    url: '@Url.Action("GetTeacherCreditDetails", "Course")',
+                    method: "POST",
+                    data: JSON.stringify({ id: selectedTeacher }),
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function(creditDetails) {
+                        $("#teachersTotalCredit").attr('readonly', false);
+                        $("#remCreditOfTeacher").attr('readonly', false);
+                        console.log(creditDetails);
+                        $("#teachersTotalCredit").attr('value', creditDetails);
+                        $("#teachersTotalCredit").attr('readonly', true);
+                    }
+                });
+            }
+        });
 
     </script>
 }

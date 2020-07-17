@@ -31,6 +31,9 @@ namespace UniversitySystem.Models.Configurations
             Property(t => t.TeacherCredits)
                 .IsRequired()
                 .HasColumnType("float");
+            Property(t => t.RemainingCredits)
+                .IsRequired()
+                .HasColumnType("float");
         }
     }
 }

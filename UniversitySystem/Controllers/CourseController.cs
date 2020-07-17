@@ -90,5 +90,12 @@ namespace UniversitySystem.Controllers
 
             return Json(courseAssignViewModel.CourseCodes, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetTeacherCreditDetails(int id)
+        {
+            var teacher = new Teacher();
+            var creditDetails = teacher.GetTeacherCreditDetails(id);
+            return Json(creditDetails, JsonRequestBehavior.AllowGet);
+        }
     }
 }
