@@ -1,4 +1,4 @@
-﻿@model UniversitySystem.ViewModels.CourseAssignToTeacherViewModel
+﻿@model UniversitySystem.ViewModels.AssignCourseToTeacherViewModel
 @{
     ViewBag.Title = "AssignCourseToTeacher";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,16 +7,16 @@
 <h2>Assign Course To Teacher</h2>
 
 <div class="form-group">
-    <label for="courseAssignedDepartment">Department</label>
-    <select class="form-control" id="courseAssignedDepartment" name="CourseAssignedDepartment" required></select>
+    <label for="departmentsDropdown">Department</label>
+    <select class="form-control" id="departmentsDropdown" name="CourseAssignedDepartment" required></select>
     <div id="courseAssignDeptStatus"></div>
     <div class="invalid-feedback">
         Please select a department.
     </div>
 </div>
 <div class="form-group">
-    <label for="courseAssignedTeacher">Teacher</label>
-    <select class="form-control" id="courseAssignedTeacher" name="CourseAssignedTeacher" required></select>
+    <label for="teachersDropdown">Teacher</label>
+    <select class="form-control" id="teachersDropdown" name="CourseAssignedTeacher" required></select>
     <div id="courseAssignTeacherStatus"></div>
     <div class="invalid-feedback">
         Please select a teacher's name.
@@ -37,8 +37,8 @@
     </div>
 </div>
 <div class="form-group">
-    <label for="deptCourseAssignment">Course Code</label>
-    <select class="form-control" id="deptCourseAssignment" name="AssignedCourse" required></select>
+    <label for="coursesDropdown">Course Code</label>
+    <select class="form-control" id="coursesDropdown" name="AssignedCourse" required></select>
     <div id="deptCourseAssignmentStatus"></div>
     <div class="invalid-feedback">
         Please select a course code.
@@ -70,7 +70,7 @@
         });
 
         function populateDepartmentDropdown() {
-            var departmentDropdown = $("#courseAssignedDepartment");
+            var departmentDropdown = $("#departmentsDropdown");
             departmentDropdown.empty();
             var dept = @Html.Raw(Json.Encode(Model.Departments));
 
@@ -85,21 +85,21 @@
         }
 
         function populateTeachersAndCoursesDropdown() {
-            var teacherDropdown = $("#courseAssignedTeacher");
+            var teacherDropdown = $("#teachersDropdown");
             teacherDropdown.empty();
             teacherDropdown.append($('<option/>',
                 {
                     html: "--Select a Teacher--"
                 }));
 
-            var coursesDropdown = $("#deptCourseAssignment");
+            var coursesDropdown = $("#coursesDropdown");
             coursesDropdown.empty();
             coursesDropdown.append($('<option/>',
                 {
                     html: "--Select a Course Code--"
                 }));
 
-            $("#courseAssignedDepartment").change(function() {
+            $("#departmentsDropdown").change(function() {
                 teacherDropdown.find('option:gt(0)').remove();
                 coursesDropdown.find('option:gt(0)').remove();
 
@@ -145,7 +145,7 @@
             });
         }
 
-        $("#courseAssignedTeacher").change(function() {
+        $("#teachersDropdown").change(function() {
             if ($(this).val() > 0) {
                 var selectedTeacher = $(this).val();
 
@@ -159,8 +159,34 @@
                         $("#teachersTotalCredit").attr('readonly', false);
                         $("#remCreditOfTeacher").attr('readonly', false);
                         console.log(creditDetails);
-                        $("#teachersTotalCredit").attr('value', creditDetails);
+                        $("#teachersTotalCredit").attr('value', creditDetails[0].TeacherCredits);
                         $("#teachersTotalCredit").attr('readonly', true);
+                        $("#remCreditOfTeacher").attr('value', creditDetails[0].RemainingCredits);
+                        $("#remCreditOfTeacher").attr('readonly', true);
+                    }
+                });
+            }
+        });
+
+        $("#coursesDropdown").change(function() {
+            if ($(this).val() > 0) {
+                var selectedCourse = $(this).val();
+
+                $.ajax({
+                    url: '@Url.Action("GetCourseDetails", "Course")',
+                    method: "POST",
+                    data: JSON.stringify({ id: selectedCourse }),
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function(courseDetails) {
+                        $("#nameOfSelectedCourse").attr('readonly', false);
+                        $("#creditOfSelectedCourse").attr('readonly', false);
+                        console.log(courseDetails[0].CourseName);
+                        console.log(courseDetails[0].CourseCredit);
+                        $("#nameOfSelectedCourse").attr('value', courseDetails[0].CourseName);
+                        $("#nameOfSelectedCourse").attr('readonly', true);
+                        $("#creditOfSelectedCourse").attr('value', courseDetails[0].CourseCredit);
+                        $("#creditOfSelectedCourse").attr('readonly', true);
                     }
                 });
             }
@@ -168,4 +194,3 @@
 
     </script>
 }
-

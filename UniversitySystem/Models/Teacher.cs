@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -61,18 +62,12 @@ namespace UniversitySystem.Models
             return new SelectList(teachersByDepartment, "Value", "Text");
         }
 
-        public string GetTeacherCreditDetails(int id)
+        public IEnumerable GetTeacherCreditDetails(int id)
         {
-            var teacher = _context.Teachers.Where(t => t.Id == id).ToList();
+            var creditDetails = _context.Teachers.Where(t => t.Id == id)
+                .Select(t => new {t.TeacherCredits, t.RemainingCredits});
 
-            float creditDetails = 0;
-
-            foreach (var t in teacher)
-            {
-                creditDetails = t.TeacherCredits;
-            }
-
-            return creditDetails.ToString();
+            return creditDetails;
         }
 
     }

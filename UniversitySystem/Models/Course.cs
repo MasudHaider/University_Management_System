@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -34,6 +35,8 @@ namespace UniversitySystem.Models
 
         public Semester SemesterId { get; set; }
 
+        public int? TeacherId { get; set; }
+
         //Methods
         public bool CheckCourseCodeAvailability(string courseCode)
         {
@@ -56,6 +59,14 @@ namespace UniversitySystem.Models
                 }).ToList();
 
             return new SelectList(coursesByDepartment, "Value", "Text");
+        }
+
+        public IEnumerable GetCourseDetails(int id)
+        {
+            var courseDetails = _context.Courses.Where(c => c.Id == id)
+                .Select(c => new {c.CourseName, c.CourseCredit});
+
+            return courseDetails;
         }
     }
 

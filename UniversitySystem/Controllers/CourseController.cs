@@ -58,7 +58,7 @@ namespace UniversitySystem.Controllers
         {
             var department = new Department();
 
-            var courseAssignViewModel = new CourseAssignToTeacherViewModel
+            var courseAssignViewModel = new AssignCourseToTeacherViewModel
             {
                 Departments = department.GetDepartments()
             };
@@ -71,7 +71,7 @@ namespace UniversitySystem.Controllers
             var teacher = new Teacher();
 
             //IEnumerable<SelectListItem> teachersByDepartment = teacher.GetTeachersByDepartment(id);
-            var courseAssignViewModel = new CourseAssignToTeacherViewModel
+            var courseAssignViewModel = new AssignCourseToTeacherViewModel
             {
                 Teachers = teacher.GetTeachersByDepartment(id)
             };
@@ -83,7 +83,7 @@ namespace UniversitySystem.Controllers
         {
             var course = new Course();
 
-            var courseAssignViewModel = new CourseAssignToTeacherViewModel
+            var courseAssignViewModel = new AssignCourseToTeacherViewModel
             {
                 CourseCodes = course.GetCoursesByDepartment(id)
             };
@@ -96,6 +96,15 @@ namespace UniversitySystem.Controllers
             var teacher = new Teacher();
             var creditDetails = teacher.GetTeacherCreditDetails(id);
             return Json(creditDetails, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetCourseDetails(int id)
+        {
+            var course = new Course();
+
+            var courseDetails = course.GetCourseDetails(id);
+
+            return Json(courseDetails, JsonRequestBehavior.AllowGet);
         }
     }
 }
