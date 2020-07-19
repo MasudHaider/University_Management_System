@@ -37,6 +37,8 @@ namespace UniversitySystem.Models
         public float TeacherCredits { get; set; }
         public float RemainingCredits { get; set; }
 
+        public ICollection<AssignCourseToTeacher> AssignCourseToTeachers { get; set; }
+
 
         //Methods
         public bool CheckTeacherEmailAvailability(string teacherEmail)

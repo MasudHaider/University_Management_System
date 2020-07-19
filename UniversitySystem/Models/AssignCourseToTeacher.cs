@@ -9,9 +9,6 @@ namespace UniversitySystem.Models
     {
         public int Id { get; set; }
 
-        public virtual Department Department { get; set; }
-        public int DepartmentId { get; set; }
-
         public virtual Teacher Teacher { get; set; }
         public int TeacherId { get; set; }
 

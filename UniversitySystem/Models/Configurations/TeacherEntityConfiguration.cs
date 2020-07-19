@@ -22,10 +22,6 @@ namespace UniversitySystem.Models.Configurations
             Property(t => t.TeacherContactNumber)
                 .IsRequired()
                 .HasMaxLength(15);
-            HasRequired(t => t.Department)
-                .WithMany(d => d.Teachers)
-                .HasForeignKey(t => t.DepartmentId)
-                .WillCascadeOnDelete(false);
             Property(t => t.DesignationId)
                 .IsRequired();
             Property(t => t.TeacherCredits)
@@ -34,6 +30,14 @@ namespace UniversitySystem.Models.Configurations
             Property(t => t.RemainingCredits)
                 .IsRequired()
                 .HasColumnType("float");
+            HasRequired(t => t.Department)
+                .WithMany(d => d.Teachers)
+                .HasForeignKey(t => t.DepartmentId)
+                .WillCascadeOnDelete(false);
+            /*HasMany(t => t.Courses)
+                .WithRequired(c => c.Teacher)
+                .HasForeignKey(c => c.TeacherId)
+                .WillCascadeOnDelete(false);*/
         }
     }
 }

@@ -15,10 +15,10 @@ namespace UniversitySystem.ViewModels
         public int CourseAssignedTeacher { get; set; }
         public IEnumerable<SelectListItem> Teachers { get; set; }
 
-        public float CourseAssignedCredit { get; set; }
         public float TeachersRemainingCredit { get; set; }
 
         public int AssignedCourse { get; set; }
+        public float CourseAssignedCredit { get; set; }
         public IEnumerable<SelectListItem> CourseCodes { get; set; }
 
         /*public string SelectedCourseName { get; set; }

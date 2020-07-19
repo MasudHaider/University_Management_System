@@ -230,3 +230,10 @@ E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrati
 E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.AddRemainingCreditToTeacher.resources
 E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.AddTeacherIdPropertyToCourse.resources
 E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.AddAssignCourseToTeacherTable.resources
+E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.RemoveVirtualPropertiesFromAssignCourseToTeacher.resources
+E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.AddCollectionOfCoursesToTeacher.resources
+E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.RemoveCourseIdAndTeacherIdFromDepartmentTable.resources
+E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.RemoveAssignCourseToTeacherTable.resources
+E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.DropTeacherFromCourseTable.resources
+E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.OneToManyBetweenTeacherAndCourse.resources
+E:\Projects\UniversitySystem\UniversitySystem\obj\Debug\UniversitySystem.Migrations.ChangeCourseAssignmentPropertiesToFloat.resources

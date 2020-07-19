@@ -30,12 +30,11 @@ namespace UniversitySystem.Models
         public string CourseDescription { get; set; }
 
         public virtual Department Department { get; set; }
-
         public int DepartmentId { get; set; }
 
         public Semester SemesterId { get; set; }
 
-        public int? TeacherId { get; set; }
+        public ICollection<AssignCourseToTeacher> AssignCourseToTeachers { get; set; }
 
         //Methods
         public bool CheckCourseCodeAvailability(string courseCode)

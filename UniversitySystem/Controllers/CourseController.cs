@@ -66,6 +66,17 @@ namespace UniversitySystem.Controllers
             return View(courseAssignViewModel);
         }
 
+        [HttpPost]
+        public ActionResult AssignCourseToTeacher(AssignCourseToTeacherViewModel assignCourse)
+        {
+            if (assignCourse == null)
+                return Content("Invalid");
+
+            return Content("ok");
+        }
+
+
+
         public JsonResult GetTeachersByDepartment(int? id)
         {
             var teacher = new Teacher();

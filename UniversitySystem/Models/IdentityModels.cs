@@ -41,6 +41,7 @@ namespace UniversitySystem.Models
             modelBuilder.Configurations.Add(new DepartmentEntityConfiguration());
             modelBuilder.Configurations.Add(new CourseEntityConfiguration());
             modelBuilder.Configurations.Add(new TeacherEntityConfiguration());
+            modelBuilder.Configurations.Add(new AssignCourseToTeacherEntityConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

@@ -28,6 +28,7 @@ namespace UniversitySystem.Models.Configurations
                 .WithMany(d => d.Courses)
                 .HasForeignKey(c => c.DepartmentId)
                 .WillCascadeOnDelete(false);
+
             Property(c => c.SemesterId)
                 .IsRequired();
         }
