@@ -13,6 +13,38 @@
                                 event.preventDefault();
                                 event.stopPropagation();
                             }
+
+                            if (form.checkValidity() === true) {
+                                event.preventDefault();
+
+                                var teachersRemCredits = $("#teachersTotalCredit").val().trim() -
+                                $("#creditOfSelectedCourse").val().trim();
+
+                                $("#remCreditOfTeacher").attr("value", teachersRemCredits);
+                                var courseAssigned = $("#coursesDropdown option:selected").val().trim();
+
+                                var courseAssignmentInputs = new Object();
+
+                                courseAssignmentInputs.CourseAssignedDepartment = $("#departmentsDropdown option:selected").val().trim();
+                                courseAssignmentInputs.CourseAssignedTeacher = $("#teachersDropdown option:selected").val().trim();
+                                courseAssignmentInputs.AssignedCourseId = courseAssigned;
+                                courseAssignmentInputs.TeachersRemainingCredit = teachersRemCredits;
+
+                                $.ajax({
+                                    url: "/Course/AssignCourseToTeacher/",
+                                    method: "POST",
+                                    contentType: "application/json; charset=utf-8",
+                                    data: JSON.stringify(courseAssignmentInputs),
+                                    dataType: "json",
+                                    error: function() {
+                                        console.log('unable to update');
+                                    },
+                                    success: function (responseData) {
+                                        $("#coursesDropdown option[value="+responseData+"]").remove();
+                                    }
+                                });
+                            }
+
                             form.classList.add('was-validated');
                         },
                         false);

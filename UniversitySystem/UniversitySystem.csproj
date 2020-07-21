@@ -320,10 +320,20 @@
     <Compile Include="Migrations\202007191140183_ChangeCourseAssignmentPropertiesToFloat.Designer.cs">
       <DependentUpon>202007191140183_ChangeCourseAssignmentPropertiesToFloat.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007200445299_AddDepartmentToAssignCourse.cs" />
+    <Compile Include="Migrations\202007200445299_AddDepartmentToAssignCourse.Designer.cs">
+      <DependentUpon>202007200445299_AddDepartmentToAssignCourse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007200536560_TeacherCourseRelationship.cs" />
+    <Compile Include="Migrations\202007200536560_TeacherCourseRelationship.Designer.cs">
+      <DependentUpon>202007200536560_TeacherCourseRelationship.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007201139122_DropAssignCourseToTeacher.cs" />
+    <Compile Include="Migrations\202007201139122_DropAssignCourseToTeacher.Designer.cs">
+      <DependentUpon>202007201139122_DropAssignCourseToTeacher.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\AssignCourseToTeacher.cs" />
-    <Compile Include="Models\Configurations\AssignCourseToTeacherEntityConfiguration.cs" />
     <Compile Include="Models\Configurations\CourseEntityConfiguration.cs" />
     <Compile Include="Models\Configurations\DepartmentEntityConfiguration.cs" />
     <Compile Include="Models\Configurations\TeacherEntityConfiguration.cs" />
@@ -544,6 +554,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007191140183_ChangeCourseAssignmentPropertiesToFloat.resx">
       <DependentUpon>202007191140183_ChangeCourseAssignmentPropertiesToFloat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007200445299_AddDepartmentToAssignCourse.resx">
+      <DependentUpon>202007200445299_AddDepartmentToAssignCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007200536560_TeacherCourseRelationship.resx">
+      <DependentUpon>202007200536560_TeacherCourseRelationship.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007201139122_DropAssignCourseToTeacher.resx">
+      <DependentUpon>202007201139122_DropAssignCourseToTeacher.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

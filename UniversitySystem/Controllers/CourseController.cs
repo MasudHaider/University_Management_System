@@ -1,7 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
+using System.Net;
+using System.Web.Http.Results;
 using System.Web.Mvc;
+using System.Xml.Linq;
 using UniversitySystem.Models;
 using UniversitySystem.ViewModels;
 
@@ -21,6 +26,7 @@ namespace UniversitySystem.Controllers
             _context.Dispose();
         }
 
+
         [HttpGet]
         public ActionResult SaveCourse()
         {
@@ -35,6 +41,7 @@ namespace UniversitySystem.Controllers
             return View(courseViewModel);
         }
 
+
         public JsonResult CheckCourseCodeAvailability(string courseCode)
         {
             var course = new Course();
@@ -44,6 +51,7 @@ namespace UniversitySystem.Controllers
             return Json(courseCodeAvailability, JsonRequestBehavior.AllowGet);
         }
 
+
         public JsonResult CheckCourseNameAvailability(string courseName)
         {
             var course = new Course();
@@ -52,6 +60,7 @@ namespace UniversitySystem.Controllers
 
             return Json(courseNameAvailability, JsonRequestBehavior.AllowGet);
         }
+
 
         [HttpGet]
         public ActionResult AssignCourseToTeacher()
@@ -66,22 +75,31 @@ namespace UniversitySystem.Controllers
             return View(courseAssignViewModel);
         }
 
+
         [HttpPost]
         public ActionResult AssignCourseToTeacher(AssignCourseToTeacherViewModel assignCourse)
         {
             if (assignCourse == null)
                 return Content("Invalid");
 
-            return Content("ok");
-        }
+            //Fetched the course from DB whose ID is brought by viewmodel from view
+            var courseInDb = _context.Courses.Single(c => c.Id == assignCourse.AssignedCourseId);
+            courseInDb.TeacherId = assignCourse.CourseAssignedTeacher;
 
+            //Fetched the teacher from DB whose ID is brought by viewmodel from view
+            var teacherInDb = _context.Teachers.Single(t => t.Id == assignCourse.CourseAssignedTeacher);
+            teacherInDb.RemainingCredits = assignCourse.TeachersRemainingCredit;
+            teacherInDb.Courses.Add(courseInDb);
+            _context.SaveChanges();
+
+            return Json(assignCourse.AssignedCourseId);
+        }
 
 
         public JsonResult GetTeachersByDepartment(int? id)
         {
             var teacher = new Teacher();
 
-            //IEnumerable<SelectListItem> teachersByDepartment = teacher.GetTeachersByDepartment(id);
             var courseAssignViewModel = new AssignCourseToTeacherViewModel
             {
                 Teachers = teacher.GetTeachersByDepartment(id)
@@ -89,6 +107,7 @@ namespace UniversitySystem.Controllers
 
             return Json(courseAssignViewModel.Teachers, JsonRequestBehavior.AllowGet);
         }
+
 
         public JsonResult GetCoursesByDepartment(int? id)
         {
@@ -102,12 +121,14 @@ namespace UniversitySystem.Controllers
             return Json(courseAssignViewModel.CourseCodes, JsonRequestBehavior.AllowGet);
         }
 
+
         public JsonResult GetTeacherCreditDetails(int id)
         {
             var teacher = new Teacher();
             var creditDetails = teacher.GetTeacherCreditDetails(id);
             return Json(creditDetails, JsonRequestBehavior.AllowGet);
         }
+
 
         public JsonResult GetCourseDetails(int id)
         {

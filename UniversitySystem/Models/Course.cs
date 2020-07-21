@@ -19,6 +19,7 @@ namespace UniversitySystem.Models
             _context = new ApplicationDbContext();
         }
 
+        //primary key
         public int Id { get; set; }
 
         public string CourseCode { get; set; }
@@ -34,7 +35,10 @@ namespace UniversitySystem.Models
 
         public Semester SemesterId { get; set; }
 
-        public ICollection<AssignCourseToTeacher> AssignCourseToTeachers { get; set; }
+        public virtual Teacher Teacher { get; set; }
+
+        //A course can be assigned to 0 or more teachers
+        public int? TeacherId { get; set; }
 
         //Methods
         public bool CheckCourseCodeAvailability(string courseCode)
@@ -63,7 +67,7 @@ namespace UniversitySystem.Models
         public IEnumerable GetCourseDetails(int id)
         {
             var courseDetails = _context.Courses.Where(c => c.Id == id)
-                .Select(c => new {c.CourseName, c.CourseCredit});
+                .Select(c => new {c.CourseName, c.CourseCredit, c.TeacherId});
 
             return courseDetails;
         }

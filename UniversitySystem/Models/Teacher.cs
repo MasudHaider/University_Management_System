@@ -16,8 +16,9 @@ namespace UniversitySystem.Models
         public Teacher()
         {
             _context = new ApplicationDbContext();
+            Courses = new List<Course>();
         }
-
+        //primary key
         public int Id { get; set; }
 
         public string TeacherName { get; set; }
@@ -28,16 +29,16 @@ namespace UniversitySystem.Models
 
         public string TeacherContactNumber { get; set; }
 
-        //public virtual Designation Designation { get; set; }
         public Designations DesignationId { get; set; }
 
-        public virtual Department Department { get; set; }
+        public Department Department { get; set; }
         public int DepartmentId { get; set; }
 
         public float TeacherCredits { get; set; }
         public float RemainingCredits { get; set; }
 
-        public ICollection<AssignCourseToTeacher> AssignCourseToTeachers { get; set; }
+        //a teacher can teach many courses
+        public ICollection<Course> Courses { get; set; }
 
 
         //Methods
