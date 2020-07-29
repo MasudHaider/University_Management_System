@@ -6,7 +6,7 @@
 
 <h2>Assign Course To Teacher</h2>
 
-<form id="courseAssignToTeacherForm" class="courseAssign-form-needs-validation" novalidate="" method="post">
+<form id="courseAssignToTeacherForm" class="form-needs-validation" novalidate="" method="post">
     <div class="form-group">
         <label for="departmentsDropdown">Department</label>
         <select class="form-control" id="departmentsDropdown" name="CourseAssignedDepartment" required></select>
@@ -18,7 +18,7 @@
     <div class="form-group">
         <label for="teachersDropdown">Teacher</label>
         <select class="form-control" id="teachersDropdown" name="CourseAssignedTeacher" required></select>
-        <div id="courseAssignTeacherStatus"></div>
+        <div id="teachersDropdownStatus"></div>
         <div class="invalid-feedback">
             Please select a teacher's name.
         </div>
@@ -26,21 +26,24 @@
     <div class="form-row">
         <div class="col-md-4 mb-3">
             <label for="teachersTotalCredit">Credit to be taken</label>
-            <input type="text" class="form-control" id="teachersTotalCredit" name="TeachersTotalCredit" value="" readonly="readonly" />
+            <input type="text" class="form-control" id="teachersTotalCredit" value="" readonly="readonly" required />
             <div id="totalCreditStatus"></div>
+        </div>
+        <div class="invalid-feedback">
+            Select a teacher to see his/her total credits
         </div>
     </div>
     <div class="form-row">
         <div class="col-md-4 mb-3">
             <label for="remCreditOfTeacher">Remaining Credit</label>
-            <input type="text" class="form-control" id="remCreditOfTeacher" name="TeachersRemainingCredit" readonly="readonly" />
+            <input type="text" class="form-control" id="remCreditOfTeacher" name="TeachersRemainingCredit" readonly="readonly" required />
             <div id="remCreditOfTeacherStatus"></div>
         </div>
     </div>
     <div class="form-group">
         <label for="coursesDropdown">Course Code</label>
         <select class="form-control" id="coursesDropdown" name="AssignedCourseId" required></select>
-        <div id="deptCourseAssignmentStatus"></div>
+        <div id="coursesDropdownStatus"></div>
         <div class="invalid-feedback">
             Please select a course code.
         </div>
@@ -48,14 +51,14 @@
     <div class="form-row">
         <div class="col-md-4 mb-3">
             <label for="nameOfSelectedCourse">Course Name</label>
-            <input type="text" class="form-control" id="nameOfSelectedCourse" name="SelectedCourseName" readonly />
+            <input type="text" class="form-control" id="nameOfSelectedCourse" name="SelectedCourseName" readonly required />
             <div id="nameOfSelectedCourseStatus"></div>
         </div>
     </div>
     <div class="form-row">
         <div class="col-md-4 mb-3">
             <label for="creditOfSelectedCourse">Course Credit</label>
-            <input type="text" class="form-control" id="creditOfSelectedCourse" name="CourseAssignedCredit" readonly />
+            <input type="text" class="form-control" id="creditOfSelectedCourse" name="CourseAssignedCredit" readonly required />
             <div id="creditOfSelectedCourseStatus"></div>
         </div>
     </div>
@@ -64,9 +67,7 @@
 
 @section scripts
 {
-    <script src="~/Scripts/jquery-3.0.0.js"></script>
     <script src="~/Scripts/AssignCourseToTeacher.js"></script>
-
     <script>
         $(document).ready(function() {
             populateDepartmentDropdown();
@@ -169,6 +170,10 @@
                         $("#remCreditOfTeacher").attr('readonly', true);
                     }
                 });
+            } else {
+                $("#teachersTotalCredit").attr('value', "");
+                $("#remCreditOfTeacher").attr('value', "");
+                $("#teachersDropdownStatus").html('<font color="Red">please select a teacher to see details</font>');
             }
         });
 
@@ -192,6 +197,10 @@
                         console.log(courseDetails[0].TeacherId);
                     }
                 });
+            } else {
+                $("#nameOfSelectedCourse").attr('value', "");
+                $("#creditOfSelectedCourse").attr('value', "");
+                $("#coursesDropdownStatus").html("please select a course to see it's details");
             }
         });
 

@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Results;
 using UniversitySystem.Models;
 using UniversitySystem.ViewModels;
 
@@ -9,7 +10,7 @@ namespace UniversitySystem.Controllers.Api
 {
     public class CoursesController : ApiController
     {
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
         public CoursesController()
         {
@@ -27,7 +28,6 @@ namespace UniversitySystem.Controllers.Api
 
             return NotFound();
         }
-
 
 
         //POST /api/Courses/
@@ -53,5 +53,25 @@ namespace UniversitySystem.Controllers.Api
 
             return Request.CreateResponse(HttpStatusCode.Created);
         }
+
+        /*[HttpPost]
+        public IHttpActionResult AssignCourseToTeacher(AssignCourseToTeacherViewModel assignCourseToTeacher)
+        {
+            if (assignCourseToTeacher == null)
+                return NotFound();
+
+            //Fetched the course from DB whose ID is brought by viewmodel from view
+            var courseInDb = _context.Courses.Single(c => c.Id == assignCourseToTeacher.AssignedCourseId);
+            courseInDb.TeacherId = assignCourseToTeacher.CourseAssignedTeacher;
+
+            //Fetched the teacher from DB whose ID is brought by viewmodel from view
+            var teacherInDb = _context.Teachers.Single(t => t.Id == assignCourseToTeacher.CourseAssignedTeacher);
+            teacherInDb.RemainingCredits = assignCourseToTeacher.TeachersRemainingCredit;
+            teacherInDb.Courses.Add(courseInDb);
+            _context.SaveChanges();
+
+            return Json(assignCourseToTeacher.AssignedCourseId);
+        }*/
+
     }
 }

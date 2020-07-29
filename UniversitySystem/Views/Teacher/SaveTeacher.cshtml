@@ -171,10 +171,6 @@
             $("#teacherContactInput").change(function () {
                 var teacherContactData = $(this).val();
                 if (/^\d{11}$/.test(teacherContactData)) {
-
-                    //if ($("#teacherEmailInput").val().trim().length >= 10 && $("#teacherEmailInput").val().trim().length <= 30) {
-
-                    //$('#saveCourseButton').attr('disabled', 'disabled');
                     $.ajax({
                         url: '@Url.Action("CheckTeacherContactAvailability", "Teacher")',
                         type: 'POST',

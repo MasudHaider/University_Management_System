@@ -53,7 +53,8 @@ namespace UniversitySystem.Models
 
         public IEnumerable<SelectListItem> GetCoursesByDepartment(int? id)
         {
-            List<SelectListItem> coursesByDepartment = _context.Courses.Where(t => t.DepartmentId == id)
+            List<SelectListItem> coursesByDepartment = _context.Courses
+                .Where(t => t.DepartmentId == id && t.TeacherId == null)
                 .OrderBy(t => t.CourseCode)
                 .Select(t => new SelectListItem
                 {

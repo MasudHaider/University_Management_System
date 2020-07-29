@@ -3,7 +3,7 @@
     window.addEventListener('load',
         function () {
             // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.getElementsByClassName("courseAssign-form-needs-validation");
+            var forms = document.getElementsByClassName("form-needs-validation");
             // Loop over them and prevent submission
             var validation = Array.prototype.filter.call(forms,
                 function (form) {
@@ -13,11 +13,10 @@
                                 event.preventDefault();
                                 event.stopPropagation();
                             }
-
-                            if (form.checkValidity() === true) {
+                            else {
                                 event.preventDefault();
 
-                                var teachersRemCredits = $("#teachersTotalCredit").val().trim() -
+                                var teachersRemCredits = $("#remCreditOfTeacher").val().trim() -
                                 $("#creditOfSelectedCourse").val().trim();
 
                                 $("#remCreditOfTeacher").attr("value", teachersRemCredits);
@@ -31,16 +30,16 @@
                                 courseAssignmentInputs.TeachersRemainingCredit = teachersRemCredits;
 
                                 $.ajax({
-                                    url: "/Course/AssignCourseToTeacher/",
+                                    url: "/Api/CourseAssignToTeacher/",
                                     method: "POST",
                                     contentType: "application/json; charset=utf-8",
                                     data: JSON.stringify(courseAssignmentInputs),
                                     dataType: "json",
-                                    error: function() {
-                                        console.log('unable to update');
+                                    error: function () {
+                                        console.log("unable to update");
                                     },
                                     success: function (responseData) {
-                                        $("#coursesDropdown option[value="+responseData+"]").remove();
+                                        $("#coursesDropdown option[value=" + responseData + "]").remove();
                                     }
                                 });
                             }
