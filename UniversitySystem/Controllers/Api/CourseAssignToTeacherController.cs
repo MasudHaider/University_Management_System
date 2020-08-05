@@ -31,8 +31,10 @@ namespace UniversitySystem.Controllers.Api
             //Fetched the teacher from DB whose ID is brought by viewmodel from view
             var teacherInDb = _context.Teachers.Single(t => t.Id == assignCourseToTeacher.CourseAssignedTeacher);
             teacherInDb.RemainingCredits = assignCourseToTeacher.TeachersRemainingCredit;
+
             teacherInDb.Courses.Add(courseInDb);
             _context.SaveChanges();
+            ModelState.Clear();
 
             return Json(assignCourseToTeacher.AssignedCourseId);
         }

@@ -461,6 +461,7 @@
     <Content Include="Views\Course\SaveCourse.cshtml" />
     <Content Include="Views\Teacher\SaveTeacher.cshtml" />
     <Content Include="Views\Course\AssignCourseToTeacher.cshtml" />
+    <Content Include="Views\Course\ShowCourseStatistics.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

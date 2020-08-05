@@ -95,6 +95,12 @@ namespace UniversitySystem.Controllers
             return Json(assignCourse.AssignedCourseId);
         }
 
+        [HttpGet]
+        public ActionResult ShowCourseStatistics()
+        {
+            return View();
+        }
+
 
         public JsonResult GetTeachersByDepartment(int? id)
         {
@@ -136,6 +142,13 @@ namespace UniversitySystem.Controllers
 
             var courseDetails = course.GetCourseDetails(id);
 
+            return Json(courseDetails, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult CourseDetailsByDepartment(int? departmentId)
+        {
+            var course = new Course();
+            var courseDetails = course.CourseDetailsByDepartment(departmentId);
             return Json(courseDetails, JsonRequestBehavior.AllowGet);
         }
     }

@@ -68,7 +68,15 @@ namespace UniversitySystem.Models
         public IEnumerable GetCourseDetails(int id)
         {
             var courseDetails = _context.Courses.Where(c => c.Id == id)
-                .Select(c => new {c.CourseName, c.CourseCredit, c.TeacherId});
+                .Select(c => new {c.CourseCode, c.CourseName, c.SemesterId, c.CourseCredit, c.TeacherId});
+
+            return courseDetails;
+        }
+
+        public IEnumerable CourseDetailsByDepartment(int? departmentId)
+        {
+            var courseDetails = _context.Courses.Where(c => c.DepartmentId == departmentId)
+                .Select(c => new { c.CourseCode, c.CourseName, c.SemesterId, c.Teacher.TeacherName }).ToList();
 
             return courseDetails;
         }

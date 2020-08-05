@@ -1,0 +1,103 @@
+﻿
+@{
+    ViewBag.Title = "ShowCourseStatistics";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Show Course Statistics</h2>
+
+<div class="form-group">
+    <label for="departmentsDropdown">Department</label>
+    <select class="form-control" id="departmentsDropdown" required></select>
+    <div id="courseAssignDeptStatus"></div>
+    <div class="invalid-feedback">
+        Please select a department.
+    </div>
+</div>
+
+<div>
+    <table class="table table-bordered table-hover" id="courseStatisticsTable">
+        <tr>
+            <th style="color: blueviolet">Serial No</th>
+            <th style="color: blueviolet">Course Code</th>
+            <th style="color: blueviolet">Course Name</th>
+            <th style="color: blueviolet">Semester</th>
+            <th style="color: blueviolet">Assigned To</th>
+        </tr>
+    </table>
+</div>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            populateDepartmentDropdown();
+            populateCourseStatisticsTable();
+        });
+
+        function populateDepartmentDropdown() {
+            var departmentDropdown = $("#departmentsDropdown");
+            departmentDropdown.append($('<option/>',
+                {
+                    value: "",
+                    html: "--Select a Department--"
+                }));
+
+            $.ajax({
+                type: "GET",
+                url: "/Api/Departments/",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (department) {
+                    $.each(department,
+                        function (i) {
+                            departmentDropdown.append($('<option/>',
+                                {
+                                    value: department[i].Id,
+                                    html: department[i].DepartmentCode
+                                }));
+                        });
+                }
+            });
+        }
+
+        function populateCourseStatisticsTable() {
+            $("#departmentsDropdown").change(function () {
+                var courseStatTable = $("#courseStatisticsTable");
+
+                if ($(this).val() > 0) {
+                    var selectedDept = $(this).val();
+                    $("#courseStatisticsTable tr").not(function () { return !!$(this).has('th').length; }).remove();
+                    $.ajax({
+                        url: '@Url.Action("CourseDetailsByDepartment", "Course")',
+                        method: "POST",
+                        data: JSON.stringify({ departmentId: selectedDept }),
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        error: function (data) {
+                            alert(data.responseText);
+                        },
+                        success: function (courseDetails) {
+                            $.each(courseDetails,
+                                function (i) {
+                                    if (courseDetails[i].TeacherName == null) {
+                                        courseDetails[i].TeacherName = "Not Assigned Yet";
+                                    }
+                                    var rows = "<tr>" +
+                                        "<td id='serial'>" + (i+1) + "</td>" +
+                                        "<td id='courseCode'>" + courseDetails[i].CourseCode + "</td>" +
+                                        "<td id='courseName'>" + courseDetails[i].CourseName + "</td>" +
+                                        "<td id='courseSemester'>" + courseDetails[i].SemesterId + "</td>" +
+                                        "<td id='teacher'>" + courseDetails[i].TeacherName + "</td>" +
+                                        "</tr>";
+                                    courseStatTable.append(rows);
+                                });
+                        }
+                    });
+                } else {
+                    $("#courseStatisticsTable tr").not(function () { return !!$(this).has('th').length; }).remove();
+                }
+            });
+        }
+    </script>
+}

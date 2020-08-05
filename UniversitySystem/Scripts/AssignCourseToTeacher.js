@@ -39,7 +39,7 @@
                                         console.log("unable to update");
                                     },
                                     success: function (responseData) {
-                                        $("#coursesDropdown option[value=" + responseData + "]").remove();
+                                        document.getElementById("#courseAssignToTeacherForm").reset();
                                     }
                                 });
                             }
